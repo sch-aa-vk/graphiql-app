@@ -3,6 +3,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    '@typescript-eslint/parser',
     'prettier',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
@@ -23,7 +24,8 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   rules: {
