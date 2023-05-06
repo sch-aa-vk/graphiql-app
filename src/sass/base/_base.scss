@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  color: $color-font;
+  font-family: 'Istok Web', sans-serif;
+  // font-family: 'Literata', serif;
+  // font-family: 'Press Start 2P', cursive;
+}
+
+.main {
+  min-height: calc(100vh - 60px - 45px);
+
+  @include media-tablet {
+    min-height: calc(100vh - 60px - 70px);
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: $content-width;
+}
+
+// .huge {
+//   height: 5000px;
+// }
