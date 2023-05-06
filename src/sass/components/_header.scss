@@ -1,0 +1,73 @@
+.header {
+  height: 60px;
+  padding: 10px 0;
+  background-color: $color-secondary;
+  color: $color-font-light;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .navigation {
+
+    @include media-tablet {
+      position: absolute;
+      top: 10px;
+      right: -400px;
+      background-color: $color-light;
+      border: solid 2px $color-primary;
+      padding: 5px;
+      padding: 50px 5px 5px 5px;
+      transition: 1s right;
+    }
+
+    &.opened {
+      right: 10px;
+    }
+
+    &__list {
+      display: flex;
+
+      @include media-tablet {
+        flex-direction: column;
+      }
+    }
+
+    &__item {
+      list-style: none;
+      margin-right: 20px;
+
+      @include media-tablet {
+        padding: 5px;
+      }
+    }
+
+    &__link {
+      color: $color-font-light;
+      font-size: 20px;
+      text-decoration: none;
+      padding: 5px;
+      transition: .2s;
+      
+      @include media-tablet {
+        color: $color-font;
+      }
+
+      &:active,
+      &:hover {
+        color: $color-secondary-highlight;
+      }
+
+    }
+  }
+}
+
+.toggle-auth {
+  position: absolute;
+  top: 5px;
+  left: 200px;
+  background: transparentize($color: $color-secondary-highlight, $amount: 0.5);
+}
