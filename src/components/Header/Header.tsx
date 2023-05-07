@@ -1,18 +1,25 @@
+/* eslint-disable object-curly-newline */
 import { MutableRefObject, useRef, useState } from 'react';
 import NavAuth from './NavAuth';
 import NavAnonim from './NavAnonim';
+import useStickyHeader from '../../hooks/useStickyHeader';
 
 function Header() {
   const [isAuth, setIsAuth] = useState(false);
   const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false);
   const burgerMenu: MutableRefObject<HTMLElement | null> = useRef(null);
 
-  function handleChange(input: HTMLInputElement) {
+  const headerElemRef: MutableRefObject<HTMLElement | null> = useRef(null);
+  const headerClientHeight: number = (headerElemRef?.current as HTMLElement)?.clientHeight;
+  const isSticky: boolean = useStickyHeader(headerClientHeight);
+  const headersClassName = `header ${isSticky ? 'sticky' : ''}`;
+
+  function handleChange(input: HTMLInputElement): void {
     const isAuthorized: boolean = input.checked;
     setIsAuth(isAuthorized);
   }
 
-  function toggleBurgerMenu() {
+  function toggleBurgerMenu(): void {
     if (isBurgerMenuOpened) {
       burgerMenu.current?.classList.remove('opened');
       setIsBurgerMenuOpened(false);
@@ -25,7 +32,7 @@ function Header() {
 
   return (
     <>
-      <header className="header">
+      <header className={headersClassName} ref={headerElemRef}>
         <div className="wrapper">
           <div className="header__container">
             <h1 className="logo">
