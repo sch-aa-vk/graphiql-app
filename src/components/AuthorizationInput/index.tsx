@@ -1,16 +1,34 @@
-/* eslint-disable object-curly-newline */
 /* eslint-disable react/require-default-props */
-import './style.scss';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IAuthorizationInput {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   type?: string;
+  register: UseFormRegisterReturn<string>;
+  onKeyUp: () => void;
+  message: string;
 }
 
-function AuthorizationInput({ type = 'text', value, onChange, placeholder }: IAuthorizationInput) {
-  return <input type={type} value={value} onChange={onChange} placeholder={placeholder} />;
+function AuthorizationInput({
+  type = 'text',
+  placeholder,
+  register,
+  onKeyUp,
+  message,
+}: IAuthorizationInput) {
+  return (
+    <div className="authorization-input">
+      <input
+        type={type}
+        placeholder={placeholder}
+        autoComplete="off"
+        required
+        {...register}
+        onKeyUp={onKeyUp}
+      />
+      {message && <small>{message as string}</small>}
+    </div>
+  );
 }
 
 export default AuthorizationInput;

@@ -2,8 +2,6 @@ import { useState } from 'react';
 import LogIn from '../../layouts/LogIn/LogIn';
 import SignIn from '../../layouts/SignIn/SignIn';
 
-import './style.scss';
-
 function Authorization() {
   const [isBtnActive, setIsBtnActive] = useState(true);
 
