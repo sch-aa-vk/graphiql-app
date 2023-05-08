@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
@@ -45,8 +46,23 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
   }
 };
 
+const sendPasswordReset = async (email: string) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch (err) {
+    throw new Error((err as Error).message);
+  }
+};
+
 const logout = () => {
   signOut(auth);
 };
 
-export { auth, db, logInWithEmailAndPassword, registerWithEmailAndPassword, logout };
+export {
+  auth,
+  db,
+  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
+  sendPasswordReset,
+  logout,
+};

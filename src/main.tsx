@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
 
