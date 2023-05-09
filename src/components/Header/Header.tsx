@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-newline */
 import { MutableRefObject, useRef, useState } from 'react';
 import NavAuth from './NavAuth';
 import NavAnonim from './NavAnonim';
