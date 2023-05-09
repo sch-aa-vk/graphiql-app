@@ -38,9 +38,9 @@ function SignIn({ active, setActive }: IAuthorization) {
   };
 
   return (
-    <div className="signin-layout">
-      <p>Sign In</p>
-      <form onSubmit={handleSubmit(handleRegister)}>
+    <div className="authorization-page__layout">
+      <h2 className="authorization-page__title">Sign In</h2>
+      <form className="authorization-page__form" onSubmit={handleSubmit(handleRegister)}>
         <AuthorizationInput
           type="name"
           placeholder="enter name"
@@ -88,16 +88,22 @@ function SignIn({ active, setActive }: IAuthorization) {
           }}
           message={errors.password?.message as string}
         />
-        <button type="submit">Register</button>
+        <button className="authorization-page__form-button" type="submit">
+          Register
+        </button>
       </form>
       {message && <ErrorModal message={message} />}
-      <div>
+      <p className="authorization-page__text">
         Already have an account?
-        <button type="button" onClick={() => setActive(!active)}>
+        <button
+          className="authorization-page__link"
+          type="button"
+          onClick={() => setActive(!active)}
+        >
           Login
         </button>
         now.
-      </div>
+      </p>
     </div>
   );
 }

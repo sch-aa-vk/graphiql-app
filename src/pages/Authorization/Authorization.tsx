@@ -12,9 +12,9 @@ function Authorization() {
   return (
     <div className="authorization-page">
       <div className="authorization-page__wrapper">
-        <div className="buttons-container">
+        <div className="authorization-page__buttons-container">
           <button
-            className="authorization-button"
+            className="authorization-page__button"
             type="button"
             disabled={isBtnActive}
             onClick={handleActiveBtn}
@@ -22,7 +22,7 @@ function Authorization() {
             Log In
           </button>
           <button
-            className="authorization-button"
+            className="authorization-page__button"
             type="button"
             disabled={!isBtnActive}
             onClick={handleActiveBtn}

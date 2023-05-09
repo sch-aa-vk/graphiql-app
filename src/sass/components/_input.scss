@@ -1,0 +1,29 @@
+.authorization-input {
+  width: 100%;
+  font-family: "Istok Web", sans-serif;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+.authorization-input__input {
+  font-size: 18px;
+  color: $color-secondary-highlight;
+  padding: 3px 5px;
+  border: 1px solid $color-secondary-highlight;
+  border-radius: 3px;
+  background: none;
+  outline: none;
+
+  &::placeholder {
+    color: $color-secondary-highlight;
+    text-transform: lowercase;
+  }
+}
+
+.authorization-input__error {
+  font-size: 16px;
+  color: $color-primary-light;
+  text-transform: lowercase;
+}
