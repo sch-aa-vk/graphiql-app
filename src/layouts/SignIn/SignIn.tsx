@@ -92,7 +92,7 @@ function SignIn({ active, setActive }: IAuthorization) {
           Register
         </button>
       </form>
-      {message && <ErrorModal message={message} />}
+      {message && <ErrorModal message={message} setMessage={setMessage} />}
       <p className="authorization-page__text">
         Already have an account?
         <button

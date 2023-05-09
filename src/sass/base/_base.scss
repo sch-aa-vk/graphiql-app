@@ -13,6 +13,7 @@ button {
 }
 
 .app {
+  position: relative;
   color: $color-font;
   font-family: 'Istok Web', sans-serif;
   // font-family: 'Literata', serif;
@@ -21,7 +22,6 @@ button {
 
 .main {
   min-height: calc(100vh - 60px - 45px);
-  background: $color-secondary;
 
   @include media-tablet {
     min-height: calc(100vh - 60px - 70px);

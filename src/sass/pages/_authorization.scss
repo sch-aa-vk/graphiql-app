@@ -19,13 +19,13 @@
 
 .authorization-page__button {
   font-size: 16px;
-  color: rgba($color: $color-font-light, $alpha: 0.5);
+  color: rgba($color: $color-font, $alpha: 0.8);
   padding: 5px 0;
   background: none;
   border: none;
 
   &:disabled {
-    color: rgba($color: $color-font-light, $alpha: 0.7);
+    color: $color-font-light;
     background: $color-secondary-light;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -57,7 +57,7 @@
 .authorization-page__title {
   font-size: 24px;
   line-height: 200%;
-  color: $color-font-light;
+  color: $color-font;
   text-align: center;
 }
 
@@ -70,7 +70,7 @@
 
 .authorization-page__form-button {
   padding: 5px 10px;
-  background: $color-font-light;
+  background: $color-secondary-highlight;
   border-radius: 3px;
   border: 1px solid $color-font-light;
   color: $color-font;
@@ -78,8 +78,8 @@
 
   &:hover {
     background: none;
-    border: 1px solid $color-font-light;
-    color: $color-font-light;
+    border: 1px solid $color-secondary-highlight;
+    color: $color-font;
   }
 }
 
@@ -102,6 +102,6 @@
 .authorization-page__text {
   font-size: 16px;
   margin-top: 10px;
-  color: $color-font-light;
+  color: $color-font;
   text-align: center;
 }

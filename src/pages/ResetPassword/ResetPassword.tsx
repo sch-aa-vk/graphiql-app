@@ -52,7 +52,7 @@ function ResetPassword() {
             message={errors.email?.message as string}
           />
           <button className="authorization-page__form-button" type="submit">
-            Send password reset email
+            Reset email
           </button>
         </form>
         {message && <ErrorModal message={message} />}

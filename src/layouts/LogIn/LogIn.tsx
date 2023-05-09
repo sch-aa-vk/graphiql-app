@@ -62,7 +62,7 @@ function LogIn({ active, setActive }: IAuthorization) {
           Log In
         </button>
       </form>
-      {message && <ErrorModal message={message} />}
+      {message && <ErrorModal message={message} setMessage={setMessage} />}
       <Link className="authorization-page__link authorization-page__link-large" to="/reset-email">
         Forgot Password
       </Link>

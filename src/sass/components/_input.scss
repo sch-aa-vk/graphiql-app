@@ -9,15 +9,15 @@
 
 .authorization-input__input {
   font-size: 18px;
-  color: $color-secondary-highlight;
+  color: $color-secondary;
   padding: 5px 5px;
-  border: 1px solid $color-secondary-highlight;
+  border: 1px solid $color-secondary;
   border-radius: 3px;
   background: none;
   outline: none;
 
   &::placeholder {
-    color: $color-secondary-highlight;
+    color: $color-secondary;
     text-transform: lowercase;
   }
 
