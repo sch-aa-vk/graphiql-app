@@ -70,32 +70,37 @@
 
 .authorization-page__form-button {
   padding: 5px 10px;
-  background: $color-secondary-highlight;
+  background: $color-primary;
   border-radius: 3px;
-  border: 1px solid $color-font-light;
-  color: $color-font;
+  border: 1px solid $color-primary;
+  color: $color-font-light;
   transition: all 0.2s linear;
 
   &:hover {
     background: none;
-    border: 1px solid $color-secondary-highlight;
-    color: $color-font;
+    border: 1px solid $color-primary;
+    color: $color-primary;
   }
 }
 
 .authorization-page__link {
   font-size: 16px;
   padding: 0 5px;
-  color: #cea5f7;
+  color: $color-font;
   background: none;
   border: none;
   text-decoration: underline;
+  transition: all 0.2s linear;
 
   &-large {
     display: inline-block;
     width: 100%;
     margin: 10px 0 0;
     text-align: center;
+  }
+
+  &:hover {
+    color: $color-secondary;
   }
 }
 

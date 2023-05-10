@@ -1,4 +1,5 @@
 import { Header, Footer } from './components';
+import { Authorization } from './pages';
 import './sass/index.scss';
 
 export function App() {
@@ -6,7 +7,8 @@ export function App() {
     <div className="app">
       <Header />
       <main className="main">
-        <div className="huge" />
+        {/* <div className="huge" /> */}
+        <Authorization />
       </main>
       <Footer />
     </div>
