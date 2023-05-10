@@ -32,6 +32,11 @@ button {
   max-width: $content-width;
 }
 
+button,
+a {
+  transition: all 0.2s linear;
+}
+
 // .huge {
 //   height: 5000px;
 // }
