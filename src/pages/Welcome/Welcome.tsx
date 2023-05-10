@@ -1,7 +1,7 @@
-import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../components/index';
+import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../../components';
 
-function Welcome(props: { isAuth: boolean }) {
-  const { isAuth } = props;
+function Welcome() {
+  const isAuth = false;
 
   return (
     <div className="welcome-page">
