@@ -10,16 +10,18 @@
 
       &__btn {
         display: block;
+        box-sizing: border-box;
+        padding: 5px 10px;
         background-color: $color-primary;
+        border-radius: 3px;
+        border: 1px solid $color-primary;
         color: $color-font-light;
-        border: none;
         font-size: 16px;
-        padding: 10px;
         margin-right: 10px;
-        transition: .2s;
 
         &:hover {
-          background-color: $color-primary-light;
+          background-color: $color-font-light;
+          color: $color-primary;
         }
 
         &:last-child {
@@ -33,6 +35,8 @@
         font-size: 30px;
         text-transform: uppercase;
         text-align: center;
+        border-bottom: solid 1px $color-secondary-highlight;
+        margin-bottom: 10px;
       }
 
       &__content {
@@ -40,8 +44,6 @@
         font-size: 16px;
         margin-bottom: 15px;
       }
-
-      
     }
   }
 }
