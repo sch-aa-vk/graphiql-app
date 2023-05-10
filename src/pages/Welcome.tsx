@@ -1,18 +1,13 @@
-import DeveloperInfo from '../components/DeveloperInfo/DeveloperInfo';
+import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../components/index';
 
-function Welcome() {
+function Welcome(props: { isAuth: boolean }) {
+  const { isAuth } = props;
+
   return (
     <div className="welcome-page">
       <div className="wrapper">
         <div className="welcome-page__container">
-          <div className="auth-block">
-            <button type="button" className="auth-block__btn">
-              Sign in
-            </button>
-            <button type="button" className="auth-block__btn">
-              Sign Up
-            </button>
-          </div>
+          {isAuth ? <WelcomeBtnsAuth /> : <WelcomeBtnsAnonim />}
           <div className="project-info">
             <h2 className="project-info__title">About team</h2>
             <div className="project-info__devs">
@@ -56,26 +51,26 @@ function Welcome() {
             <h2 className="project-info__title">About project</h2>
             <div className="project-info__content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna, vitae
-              fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit nec,
-              dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper. Mauris in congue
-              tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus tellus, convallis non
-              laoreet nec, auctor id dolor. Donec sit amet varius erat. Phasellus semper dui in
-              laoreet consectetur. Donec eu mattis libero. Sed vel lorem rhoncus, placerat nunc ut,
-              lacinia libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              blandit, ante a dapibus fermentum, dui odio ultricies elit, sed posuere erat elit ac
-              enim.
+              vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit
+              hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
+              Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
+              tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
+              Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
+              rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit,
+              erat elit ac enim.
             </div>
             <h2 className="project-info__title">About course</h2>
             <div className="project-info__content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna, vitae
-              fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit nec,
-              dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper. Mauris in congue
-              tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus tellus, convallis non
-              laoreet nec, auctor id dolor. Donec sit amet varius erat. Phasellus semper dui in
-              laoreet consectetur. Donec eu mattis libero. Sed vel lorem rhoncus, placerat nunc ut,
-              lacinia libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              blandit, ante a dapibus fermentum, dui odio ultricies elit, sed posuere erat elit ac
-              enim.
+              vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit
+              hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
+              Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
+              tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
+              Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
+              rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit, sed
+              sed posuere erat elit ac enim.
             </div>
           </div>
         </div>
