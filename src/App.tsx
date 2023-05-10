@@ -1,4 +1,4 @@
-import { Header, Footer } from './components';
+import { Header, Footer, Workspace } from './components';
 import './sass/index.scss';
 
 export function App() {
@@ -6,6 +6,7 @@ export function App() {
     <div className="app">
       <Header />
       <main className="main">
+        {false && <Workspace />}
         <div className="huge" />
       </main>
       <Footer />
