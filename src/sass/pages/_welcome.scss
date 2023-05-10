@@ -1,0 +1,47 @@
+.welcome-page {
+  padding: 10px 0;
+  
+  &__container {
+    padding: 0 10px;
+
+    .auth-block {
+      display: flex;
+      justify-content: flex-end;
+
+      &__btn {
+        display: block;
+        background-color: $color-primary;
+        color: $color-font-light;
+        border: none;
+        font-size: 16px;
+        padding: 10px;
+        margin-right: 10px;
+        transition: .2s;
+
+        &:hover {
+          background-color: $color-primary-light;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .project-info {
+      &__title {
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &__content {
+        font-family: 'Literata', serif;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      
+    }
+  }
+}

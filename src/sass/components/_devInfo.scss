@@ -1,0 +1,88 @@
+.dev-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+
+  @include media-tablet {
+    flex-direction: column-reverse;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__name{
+    font-size: 22px;
+    font-weight: 700;
+
+    @include media-tablet {
+      text-align: center;
+    }
+  }
+
+  .dev-github {
+    &__link {
+      display: flex;
+      align-items: center;
+      color: $color-primary;
+      text-decoration: none;
+      
+      @include media-tablet {
+        justify-content: center;
+      }
+
+      &-icon {
+        display: inline-block;
+        width: 20px;
+        margin-right: 5px;
+      }
+
+      &-name {
+        display: inline-block;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: $color-primary;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+
+        &:hover::after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
+      }
+    }
+  }
+
+  &__about {
+    font-family: 'Literata', serif;
+    font-size: 16px;
+  }
+
+  &__content {
+    margin-right: 25px;
+  }
+
+  &__photo {
+    display: block;
+
+    @include media-tablet {
+      display: flex;
+      justify-content: center;
+    }
+
+    &-img {
+      width: 180px;
+      border-radius: 50%;
+    }
+  }
+}

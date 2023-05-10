@@ -57,7 +57,8 @@
       }
 
       &:active,
-      &:hover {
+      &:hover,
+      &.active {
         color: $color-secondary-highlight;
       }
 
