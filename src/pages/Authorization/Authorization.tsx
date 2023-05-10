@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import LogIn from '../../layouts/LogIn/LogIn';
-import SignIn from '../../layouts/SignIn/SignIn';
+import SignIn from '../../layouts/SignUp/SignUp';
 
 function Authorization() {
   const [isBtnActive, setIsBtnActive] = useState(true);
@@ -27,7 +27,7 @@ function Authorization() {
             disabled={!isBtnActive}
             onClick={handleActiveBtn}
           >
-            Sign In
+            Sign Up
           </button>
         </div>
         {isBtnActive ? (

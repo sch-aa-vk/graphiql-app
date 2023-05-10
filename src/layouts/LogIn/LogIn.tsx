@@ -36,10 +36,10 @@ function LogIn({ active, setActive }: IAuthorization) {
           type="email"
           placeholder="Email address"
           register={register('email', {
-            required: 'Email is Required!!!',
+            required: '* Email is Required!',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
+              message: '* Invalid email address',
             },
           })}
           onKeyUp={() => {
@@ -51,7 +51,7 @@ function LogIn({ active, setActive }: IAuthorization) {
           type="password"
           placeholder="Password"
           register={register('password', {
-            required: 'You must specify a password',
+            required: '* You must specify a password',
           })}
           onKeyUp={() => {
             trigger('password');

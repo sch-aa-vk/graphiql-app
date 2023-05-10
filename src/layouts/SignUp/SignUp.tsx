@@ -8,7 +8,7 @@ import { IAuthorization } from '../../utils/types';
 import AuthorizationInput from '../../components/AuthorizationInput';
 import { ErrorModal } from '../../components';
 
-function SignIn({ active, setActive }: IAuthorization) {
+function SignUp({ active, setActive }: IAuthorization) {
   const {
     register,
     handleSubmit,
@@ -44,7 +44,13 @@ function SignIn({ active, setActive }: IAuthorization) {
         <AuthorizationInput
           type="name"
           placeholder="enter name"
-          register={register('name', { required: 'Fullname is Required!!!' })}
+          register={register('name', {
+            required: '* Fullname is Required!',
+            minLength: {
+              value: 5,
+              message: '* Name must be longer than 4 symbols',
+            },
+          })}
           onKeyUp={() => {
             trigger('name');
           }}
@@ -54,10 +60,10 @@ function SignIn({ active, setActive }: IAuthorization) {
           type="email"
           placeholder="Email address"
           register={register('email', {
-            required: 'Email is Required!!!',
+            required: '* Email is Required!',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
+              message: '* Invalid email address',
             },
           })}
           onKeyUp={() => {
@@ -69,18 +75,18 @@ function SignIn({ active, setActive }: IAuthorization) {
           type="password"
           placeholder="Password"
           register={register('password', {
-            required: 'You must specify a password',
+            required: '* You must specify a password',
             pattern: {
               value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-              message: 'Password should contain at least one number and one special character',
+              message: '* Password should contain at least one number and one special character',
             },
             minLength: {
               value: 8,
-              message: 'Password must be more than 8 characters',
+              message: '* Password must be more than 8 characters',
             },
             maxLength: {
               value: 20,
-              message: 'Password must be less than 20 characters',
+              message: '* Password must be less than 20 characters',
             },
           })}
           onKeyUp={() => {
@@ -89,7 +95,7 @@ function SignIn({ active, setActive }: IAuthorization) {
           message={errors.password?.message as string}
         />
         <button className="authorization-page__form-button" type="submit">
-          Register
+          Sign Up
         </button>
       </form>
       {message && <ErrorModal message={message} setMessage={setMessage} />}
@@ -108,4 +114,4 @@ function SignIn({ active, setActive }: IAuthorization) {
   );
 }
 
-export default SignIn;
+export default SignUp;

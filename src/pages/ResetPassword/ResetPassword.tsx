@@ -40,10 +40,10 @@ function ResetPassword() {
             type="email"
             placeholder="Email address"
             register={register('email', {
-              required: 'Email is Required!!!',
+              required: '* Email is Required!',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
+                message: '* Invalid email address',
               },
             })}
             onKeyUp={() => {
@@ -55,7 +55,7 @@ function ResetPassword() {
             Reset email
           </button>
         </form>
-        {message && <ErrorModal message={message} />}
+        {message && <ErrorModal message={message} setMessage={setMessage} />}
         {success && <p>Please check your email to reset password</p>}
         <p className="authorization-page__text">
           Don&apos;t have an account?
