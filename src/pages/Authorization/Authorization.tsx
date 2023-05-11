@@ -19,7 +19,7 @@ function Authorization() {
             disabled={isBtnActive}
             onClick={handleActiveBtn}
           >
-            Log In
+            <p className="authorization-page__button-text">Log In</p>
           </button>
           <button
             className="authorization-page__button"
@@ -27,7 +27,7 @@ function Authorization() {
             disabled={!isBtnActive}
             onClick={handleActiveBtn}
           >
-            Sign Up
+            <p className="authorization-page__button-text">Sign Up</p>
           </button>
         </div>
         {isBtnActive ? (
