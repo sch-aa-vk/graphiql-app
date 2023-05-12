@@ -1,20 +1,33 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../utils/firebase';
+
 function NavAuth() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <ul className="navigation__list">
       <li className="navigation__item">
-        <a href="#main" className="navigation__link">
+        <Link to="/" className="navigation__link">
           Welcome
-        </a>
+        </Link>
       </li>
       <li className="navigation__item">
-        <a href="#workspace" className="navigation__link">
+        <Link to="/workspace" className="navigation__link">
           Workspace
-        </a>
+        </Link>
       </li>
       <li className="navigation__item">
-        <a href="#out" className="navigation__link">
+        <button
+          type="button"
+          className="navigation__link navigation__link-button"
+          onClick={handleLogout}
+        >
           Sign Out
-        </a>
+        </button>
       </li>
     </ul>
   );

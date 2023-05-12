@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
+
 function NavAnonim() {
   return (
     <ul className="navigation__list">
       <li className="navigation__item">
-        <a href="#main" className="navigation__link">
+        <Link to="/" className="navigation__link">
           Welcome
-        </a>
+        </Link>
       </li>
       <li className="navigation__item">
-        <a href="#authorization" className="navigation__link">
+        <Link to="/auth" className="navigation__link">
           Sign In / Sign Up
-        </a>
+        </Link>
       </li>
     </ul>
   );
