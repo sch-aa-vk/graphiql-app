@@ -1,6 +1,4 @@
 .dev-info {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
 
@@ -66,10 +64,6 @@
   &__about {
     font-family: 'Literata', serif;
     font-size: 16px;
-  }
-
-  &__content {
-    margin-right: 25px;
   }
 
   &__photo {
