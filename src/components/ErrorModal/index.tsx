@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/comma-dangle */
 import ReactDOM from 'react-dom';
 
 interface IErrorModal {
