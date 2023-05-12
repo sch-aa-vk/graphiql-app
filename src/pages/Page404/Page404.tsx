@@ -1,5 +1,3 @@
-// import cat from '../../assets/images/kitty.png';
-// import cat from '../../assets/images/wrench.png';
 import cat from '../../assets/images/cat.png';
 
 function Page404() {
