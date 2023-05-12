@@ -1,4 +1,6 @@
 import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../../components';
+import projectImageObj from '../../assets/images/project.png';
+import rssImageObj from '../../assets/images/rssckool-yellow.jpg';
 
 function Welcome() {
   const isAuth = false;
@@ -49,28 +51,42 @@ function Welcome() {
               </DeveloperInfo>
             </div>
             <h2 className="project-info__title">About project</h2>
-            <div className="project-info__content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna, vitae
-              vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit
-              hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
-              Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
-              tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
-              Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
-              rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit,
-              erat elit ac enim.
+            <div className="project-info__container flex-reverse">
+              <div className="project-info__content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna,
+                vitae vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut
+                hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
+                Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
+                tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
+                Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
+                rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit,
+                erat elit ac enim.
+              </div>
+              <div className="project-info__image">
+                <img src={projectImageObj} alt="project" className="project-info__image-img" />
+              </div>
             </div>
             <h2 className="project-info__title">About course</h2>
-            <div className="project-info__content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna, vitae
-              vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut hendrerit
-              hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
-              Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
-              tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
-              Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
-              rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit, sed
-              sed posuere erat elit ac enim.
+            <div className="project-info__container">
+              <div className="project-info__content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna,
+                vitae vitae fermentum ligula pharetra sit amet. Vivamus sapien massa, pharetra ut
+                hendrerit nec, dignissim eu leo. Donec vulputate nisi at eros facilisis ullamcorper.
+                Mauris in congue tortor. Duis dictum bibendum odio eu tempor. Suspendisse tellus
+                tellus, convallis non laoreet nec, auctor id dolor. Donec sit amet varius erat.
+                Phasellus semper dui in laoreet consectetur. Donec eu mattis libero. Sed vel lorem
+                rhoncus, placerat nunc ut, lacinia libero. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Fusce blandit, ante a dapibus fermentum, dui odio ultricies elit,
+                sed sed posuere erat elit ac enim.
+              </div>
+              <div className="project-info__image">
+                <img
+                  src={rssImageObj}
+                  alt="course - rolling scope school"
+                  className="project-info__image-img"
+                />
+              </div>
             </div>
           </div>
         </div>

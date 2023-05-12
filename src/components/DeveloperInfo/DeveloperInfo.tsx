@@ -2,11 +2,10 @@ import githubIcon from '../../assets/icons/github.svg';
 import { TDeveloperInfoProps } from './TDeveloperInfoProps';
 
 function DeveloperInfo(props: TDeveloperInfoProps) {
-  // eslint-disable-next-line object-curly-newline
   const { ghLink, ghName, devName, ghAvatarLink, children } = props;
 
   return (
-    <div className="project-info__developer dev-info">
+    <div className="project-info__container dev-info">
       <div className="dev-info__content">
         <h3 className="dev-info__name">{devName}</h3>
         <p className="dev-info__gh dev-github">
