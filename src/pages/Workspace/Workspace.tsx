@@ -1,6 +1,6 @@
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { useEffect, useState } from 'react';
-import Editor from './Editor';
+import { WorkspaceEditor } from '../../components';
 
 function Workspace() {
   const [docsVisible, setDocsVisible] = useState(false);
@@ -32,7 +32,7 @@ function Workspace() {
         <SplitterPanel size={200 / 3}>
           <Splitter>
             <SplitterPanel>
-              <Editor />
+              <WorkspaceEditor />
             </SplitterPanel>
             <SplitterPanel>results</SplitterPanel>
           </Splitter>

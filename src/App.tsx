@@ -1,4 +1,5 @@
-import { Header, Footer, Workspace } from './components';
+import { Header, Footer } from './components';
+import { Workspace } from './pages';
 import './sass/index.scss';
 
 export function App() {
