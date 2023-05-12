@@ -56,7 +56,15 @@ function ResetPassword() {
           </button>
         </form>
         {message && <ErrorModal message={message} setMessage={setMessage} />}
-        {success && <p>Please check your email to reset password</p>}
+        {success && (
+          <p className="authorization-page__text">
+            Please check your email to reset password.
+            <Link to="/auth" className="authorization-page__link">
+              Log In
+            </Link>
+            now.
+          </p>
+        )}
         <p className="authorization-page__text">
           Don&apos;t have an account?
           <Link className="authorization-page__link" to="/">
