@@ -91,10 +91,3 @@
     transform: translateY(0%);
   }
 }
-
-.toggle-auth {
-  position: absolute;
-  top: 5px;
-  left: 200px;
-  background: transparentize($color: $color-secondary-highlight, $amount: 0.5);
-}
