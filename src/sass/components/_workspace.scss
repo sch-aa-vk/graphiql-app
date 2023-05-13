@@ -128,10 +128,6 @@ $border-radius: 5px;
 .workspace .btn_rectangle {
   width: 90px;
   height: 30px;
-
-  @include media-tablet {
-    width: fit-content;
-  }
 }
 
 .p-splitter-horizontal>.p-splitter-gutter>.p-splitter-gutter-handle {

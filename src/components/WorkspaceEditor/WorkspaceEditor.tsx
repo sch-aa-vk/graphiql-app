@@ -62,7 +62,7 @@ function Editor() {
         value="# console.log('hello world!');"
         onChange={onChangeCM}
         style={{
-          maxHeight: `calc((100vh - 60px - 45px - 135px) * ${toolCMVisible ? 0.5 : 1})`,
+          maxHeight: `${toolCMVisible ? 50 : 100}%`,
         }}
       />
       <div className="workspace__editor-tools">
@@ -85,9 +85,7 @@ function Editor() {
           className="workspace__tool-codemirror"
           value=""
           onChange={onChangeToolCM}
-          style={{
-            maxHeight: 'calc((100vh - 60px - 45px - 135px) * 0.5)',
-          }}
+          style={{ maxHeight: '50%' }}
         />
       )}
     </div>
