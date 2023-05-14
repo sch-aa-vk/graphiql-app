@@ -29,17 +29,17 @@ function LogIn({ active, setActive }: IAuthorization) {
   };
 
   return (
-    <div className="login-layout">
-      <p>Log In</p>
-      <form onSubmit={handleSubmit(handleLogin)}>
+    <div className="authorization-page__layout">
+      <h2 className="authorization-page__title">Log In</h2>
+      <form className="authorization-page__form" onSubmit={handleSubmit(handleLogin)}>
         <AuthorizationInput
           type="email"
           placeholder="Email address"
           register={register('email', {
-            required: 'Email is Required!!!',
+            required: '* Email is Required!',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
+              message: '* Invalid email address',
             },
           })}
           onKeyUp={() => {
@@ -51,26 +51,32 @@ function LogIn({ active, setActive }: IAuthorization) {
           type="password"
           placeholder="Password"
           register={register('password', {
-            required: 'You must specify a password',
+            required: '* You must specify a password',
           })}
           onKeyUp={() => {
             trigger('password');
           }}
           message={errors.password?.message as string}
         />
-        <button type="submit">Log In</button>
+        <button className="authorization-page__form-button" type="submit">
+          Log In
+        </button>
       </form>
-      {message && <ErrorModal message={message} />}
-      <div>
-        <Link to="/reset-email">Forgot Password</Link>
-      </div>
-      <div>
+      {message && <ErrorModal message={message} setMessage={setMessage} />}
+      <Link className="authorization-page__link authorization-page__link-large" to="/reset-email">
+        Forgot Password
+      </Link>
+      <p className="authorization-page__text">
         Don&apos;t have an account?
-        <button type="button" onClick={() => setActive(!active)}>
+        <button
+          className="authorization-page__link"
+          type="button"
+          onClick={() => setActive(!active)}
+        >
           Register
         </button>
         now.
-      </div>
+      </p>
     </div>
   );
 }

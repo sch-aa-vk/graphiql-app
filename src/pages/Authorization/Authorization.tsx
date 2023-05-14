@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import LogIn from '../../layouts/LogIn/LogIn';
-import SignIn from '../../layouts/SignIn/SignIn';
+import SignIn from '../../layouts/SignUp/SignUp';
 
 function Authorization() {
   const [isBtnActive, setIsBtnActive] = useState(true);
@@ -12,22 +12,22 @@ function Authorization() {
   return (
     <div className="authorization-page">
       <div className="authorization-page__wrapper">
-        <div className="buttons-container">
+        <div className="authorization-page__buttons-container">
           <button
-            className="authorization-button"
+            className="authorization-page__button"
             type="button"
             disabled={isBtnActive}
             onClick={handleActiveBtn}
           >
-            Log In
+            <p className="authorization-page__button-text">Log In</p>
           </button>
           <button
-            className="authorization-button"
+            className="authorization-page__button"
             type="button"
             disabled={!isBtnActive}
             onClick={handleActiveBtn}
           >
-            Sign In
+            <p className="authorization-page__button-text">Sign Up</p>
           </button>
         </div>
         {isBtnActive ? (

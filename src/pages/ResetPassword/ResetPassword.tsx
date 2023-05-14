@@ -5,6 +5,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import AuthorizationInput from '../../components/AuthorizationInput';
 import { ErrorModal } from '../../components';
+import mail from '../../assets/icons/mail-reset.svg';
 
 function ResetPassword() {
   const {
@@ -28,30 +29,49 @@ function ResetPassword() {
   };
 
   return (
-    <div className="reset-password">
-      <form onSubmit={handleSubmit(handleReset)}>
-        <AuthorizationInput
-          type="email"
-          placeholder="Email address"
-          register={register('email', {
-            required: 'Email is Required!!!',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
-            },
-          })}
-          onKeyUp={() => {
-            trigger('email');
-          }}
-          message={errors.email?.message as string}
-        />
-        <button type="submit">Send password reset email</button>
-      </form>
-      {message && <ErrorModal message={message} />}
-      {success && <p>Please check your email to reset password</p>}
-      <div>
-        Don&apos;t have an account?
-        <Link to="/">Register</Link>
+    <div className="authorization-page">
+      <div className="authorization-page__wrapper">
+        <div className="authorization-page__decoration">
+          <img className="authorization-page__decoration-image" src={mail} alt="" />
+        </div>
+        <p className="authorization-page__title">Reset Password</p>
+        <form className="authorization-page__form" onSubmit={handleSubmit(handleReset)}>
+          <AuthorizationInput
+            type="email"
+            placeholder="Email address"
+            register={register('email', {
+              required: '* Email is Required!',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: '* Invalid email address',
+              },
+            })}
+            onKeyUp={() => {
+              trigger('email');
+            }}
+            message={errors.email?.message as string}
+          />
+          <button className="authorization-page__form-button" type="submit">
+            Reset email
+          </button>
+        </form>
+        {message && <ErrorModal message={message} setMessage={setMessage} />}
+        {success && (
+          <p className="authorization-page__text">
+            Please check your email to reset password.
+            <Link to="/auth" className="authorization-page__link">
+              Log In
+            </Link>
+            now.
+          </p>
+        )}
+        <p className="authorization-page__text">
+          Don&apos;t have an account?
+          <Link className="authorization-page__link" to="/">
+            Register
+          </Link>
+          now.
+        </p>
       </div>
     </div>
   );

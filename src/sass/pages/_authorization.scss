@@ -1,0 +1,138 @@
+.authorization-page {
+  padding: 40px 10px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.authorization-page__wrapper {
+  width: 300px;
+}
+
+.authorization-page__buttons-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid $color-secondary-highlight;
+}
+
+.authorization-page__button {
+  font-size: 16px;
+  color: rgba($color: $color-font, $alpha: 0.8);
+  padding: 5px 0;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not(:disabled):hover > .authorization-page__button-text::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  &:disabled {
+    color: $color-font-light;
+    background: $color-secondary-light;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    cursor: auto;
+  }
+}
+
+.authorization-page__button-text {
+  position: relative;
+  width: max-content;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($color: $color-font, $alpha: 0.7);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+}
+
+.authorization-page__decoration {
+  padding: 5px 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: 1px solid $color-secondary-highlight;
+  background: $color-secondary-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authorization-page__decoration-image {
+  width: 25px;
+  height: 25px;
+}
+
+.authorization-page__layout {
+  width: 100%;
+  font-family: "Istok Web", sans-serif;
+}
+
+.authorization-page__title {
+  font-size: 24px;
+  line-height: 200%;
+  color: $color-font;
+  text-align: center;
+}
+
+.authorization-page__form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.authorization-page__form-button {
+  padding: 5px 10px;
+  background: $color-primary;
+  border-radius: 3px;
+  border: 1px solid $color-primary;
+  color: $color-font-light;
+  transition: all 0.2s linear;
+
+  &:hover {
+    background: none;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+  }
+}
+
+.authorization-page__link {
+  font-size: 16px;
+  padding: 0 5px;
+  color: $color-font;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  transition: all 0.2s linear;
+
+  &-large {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0 0;
+    text-align: center;
+  }
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+.authorization-page__text {
+  font-size: 16px;
+  margin-top: 10px;
+  color: $color-font;
+  text-align: center;
+}
