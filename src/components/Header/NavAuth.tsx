@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/firebase';
 
 function NavAuth() {
@@ -11,14 +11,14 @@ function NavAuth() {
   return (
     <ul className="navigation__list">
       <li className="navigation__item">
-        <Link to="/" className="navigation__link">
+        <NavLink to="/" className="navigation__link">
           Welcome
-        </Link>
+        </NavLink>
       </li>
       <li className="navigation__item">
-        <Link to="/workspace" className="navigation__link">
+        <NavLink to="/workspace" className="navigation__link">
           Workspace
-        </Link>
+        </NavLink>
       </li>
       <li className="navigation__item">
         <button
