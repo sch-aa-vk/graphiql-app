@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase';
 import { IAuthorization } from '../../utils/types';
-import AuthorizationInput from '../../components/AuthorizationInput';
+import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
 
 function SignUp({ active, setActive }: IAuthorization) {
@@ -30,6 +30,8 @@ function SignUp({ active, setActive }: IAuthorization) {
           authProvider: 'local',
           email,
         });
+        const token = await auth.currentUser?.getIdToken();
+        localStorage.setItem('acces-token', token as string);
         navigate('/');
       } catch (err) {
         setMessage((err as Error).message);

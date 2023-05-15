@@ -1,15 +1,17 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../../components';
 import projectImageObj from '../../assets/images/project.png';
 import rssImageObj from '../../assets/images/rssckool-yellow.jpg';
+import { auth } from '../../utils/firebase';
 
 function Welcome() {
-  const isAuth = false;
+  const [user] = useAuthState(auth);
 
   return (
     <div className="welcome-page">
       <div className="wrapper">
         <div className="welcome-page__container">
-          {isAuth ? <WelcomeBtnsAuth /> : <WelcomeBtnsAnonim />}
+          {user ? <WelcomeBtnsAuth /> : <WelcomeBtnsAnonim />}
           <div className="project-info">
             <h2 className="project-info__title">About team</h2>
             <div className="project-info__devs">
