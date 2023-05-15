@@ -22,6 +22,8 @@ button {
 
 .main {
   min-height: calc(100vh - 60px - 45px);
+  display: flex;
+  align-items: stretch;
 
   @include media-tablet {
     min-height: calc(100vh - 60px - 70px);
