@@ -23,7 +23,7 @@ interface State {
 }
 
 const firstEditorTabId = 1;
-const firsteditorTabText = "# console.log('hello world!');";
+const firstEditorTabText = "# console.log('hello world!');";
 
 const initialState: WorkspaceEditor = {
   variablesActive: true,
@@ -33,7 +33,7 @@ const initialState: WorkspaceEditor = {
   toolsCodemirrorVisible: false,
   newEditorTabId: firstEditorTabId,
   currentEditorTabId: firstEditorTabId,
-  editorTabs: [{ editorTabId: firstEditorTabId, editorTabText: firsteditorTabText }],
+  editorTabs: [{ editorTabId: firstEditorTabId, editorTabText: firstEditorTabText }],
 };
 
 const workspaceEditorSlice = createSlice({
