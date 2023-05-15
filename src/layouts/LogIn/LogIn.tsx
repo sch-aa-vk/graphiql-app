@@ -21,6 +21,8 @@ function LogIn({ active, setActive }: IAuthorization) {
     (async () => {
       try {
         await signInWithEmailAndPassword(auth, data.email, data.password);
+        const token = await auth.currentUser?.getIdToken();
+        localStorage.setItem('acces-token', token as string);
         navigate('/');
       } catch (err) {
         setMessage((err as Error).message);

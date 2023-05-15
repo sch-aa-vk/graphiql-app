@@ -30,6 +30,8 @@ function SignUp({ active, setActive }: IAuthorization) {
           authProvider: 'local',
           email,
         });
+        const token = await auth.currentUser?.getIdToken();
+        localStorage.setItem('acces-token', token as string);
         navigate('/');
       } catch (err) {
         setMessage((err as Error).message);
