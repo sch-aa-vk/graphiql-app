@@ -1,0 +1,24 @@
+.error-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  padding: 5px;
+  background: $color-font-light;
+  border: 2px solid $color-primary-light;
+  border-radius: 5px;
+  font-family: "Istok Web", sans-serif;
+}
+
+.error-modal__button {
+  display: block;
+  background: none;
+  border: none;
+  height: 20px;
+  font-size: 24px;
+  color: $color-primary-light;
+}
+
+.error-modal__text {
+  font-size: 16px;
+}

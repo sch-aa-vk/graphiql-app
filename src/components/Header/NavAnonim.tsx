@@ -1,15 +1,20 @@
+import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 function NavAnonim() {
+  const { t } = useTranslation();
+
   return (
     <ul className="navigation__list">
       <li className="navigation__item">
-        <a href="#main" className="navigation__link">
-          Welcome
-        </a>
+        <NavLink to="/" className="navigation__link">
+          {t('homeLink')}
+        </NavLink>
       </li>
       <li className="navigation__item">
-        <a href="#authorization" className="navigation__link">
-          Sign In / Sign Up
-        </a>
+        <NavLink to="/auth" className="navigation__link">
+          {`${t('loginLink')} / ${t('signupLink')}`}
+        </NavLink>
       </li>
     </ul>
   );

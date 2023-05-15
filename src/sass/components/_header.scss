@@ -15,17 +15,19 @@
 
     @include media-tablet {
       position: absolute;
-      top: 10px;
+      top: 0px;
       right: -400px;
+      z-index: 2;
+      height: 100vh;
+      min-width: 40vw;
       background-color: $color-light;
       border: solid 2px $color-primary;
-      padding: 5px;
       padding: 50px 5px 5px 5px;
       transition: 1s right;
     }
 
     &.opened {
-      right: 10px;
+      right: 0px;
     }
 
     &__list {
@@ -50,17 +52,21 @@
       font-size: 20px;
       text-decoration: none;
       padding: 5px;
-      transition: .2s;
       
       @include media-tablet {
         color: $color-font;
       }
 
       &:active,
-      &:hover {
+      &:hover,
+      &.active {
         color: $color-secondary-highlight;
       }
 
+      &-button {
+        background: none;
+        border: none;
+      }
     }
   }
 
@@ -71,6 +77,7 @@
     width: 100%;
     animation: slide 0.3s;
     background: transparentize($color: $color-secondary, $amount: 0.2);
+    z-index: 2;
   }
 }
 
@@ -83,11 +90,4 @@
     opacity: 1;
     transform: translateY(0%);
   }
-}
-
-.toggle-auth {
-  position: absolute;
-  top: 5px;
-  left: 200px;
-  background: transparentize($color: $color-secondary-highlight, $amount: 0.5);
 }

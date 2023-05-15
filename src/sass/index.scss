@@ -11,4 +11,12 @@
 @import './components/logo';
 @import './components/burger';
 @import './components/footer';
+@import './components/input';
+@import './components/error-modal';
+@import './components/devInfo';
+
+@import './pages/welcome';
+@import './pages/authorization';
+@import './pages/undefined';
+@import './pages/loading';
 @import './pages/workspace.scss';

@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase';
 import { IAuthorization } from '../../utils/types';
-import AuthorizationInput from '../../components/AuthorizationInput';
+import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
 
-function SignIn({ active, setActive }: IAuthorization) {
+function SignUp({ active, setActive }: IAuthorization) {
   const {
     register,
     handleSubmit,
@@ -17,6 +18,7 @@ function SignIn({ active, setActive }: IAuthorization) {
   } = useForm();
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleRegister = (data: FieldValues) => {
     const { name, email, password } = data;
@@ -30,6 +32,8 @@ function SignIn({ active, setActive }: IAuthorization) {
           authProvider: 'local',
           email,
         });
+        const token = await auth.currentUser?.getIdToken();
+        localStorage.setItem('acces-token', token as string);
         navigate('/');
       } catch (err) {
         setMessage((err as Error).message);
@@ -38,13 +42,19 @@ function SignIn({ active, setActive }: IAuthorization) {
   };
 
   return (
-    <div className="signin-layout">
-      <p>Sign In</p>
-      <form onSubmit={handleSubmit(handleRegister)}>
+    <div className="authorization-page__layout">
+      <h2 className="authorization-page__title">{t('signupLink')}</h2>
+      <form className="authorization-page__form" onSubmit={handleSubmit(handleRegister)}>
         <AuthorizationInput
           type="name"
-          placeholder="enter name"
-          register={register('name', { required: 'Fullname is Required!!!' })}
+          placeholder={t('namePlaceholder')}
+          register={register('name', {
+            required: `* ${t('nameWarning')}`,
+            minLength: {
+              value: 5,
+              message: `* ${t('nameWarning2')}`,
+            },
+          })}
           onKeyUp={() => {
             trigger('name');
           }}
@@ -52,12 +62,12 @@ function SignIn({ active, setActive }: IAuthorization) {
         />
         <AuthorizationInput
           type="email"
-          placeholder="Email address"
+          placeholder={t('emailPlaceholder')}
           register={register('email', {
-            required: 'Email is Required!!!',
+            required: `* ${t('emailWarning')}`,
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
+              message: `* ${t('emailWarning2')}`,
             },
           })}
           onKeyUp={() => {
@@ -67,20 +77,20 @@ function SignIn({ active, setActive }: IAuthorization) {
         />
         <AuthorizationInput
           type="password"
-          placeholder="Password"
+          placeholder={t('passwordPlaceholder')}
           register={register('password', {
-            required: 'You must specify a password',
+            required: `* ${t('passwordWarning')}`,
             pattern: {
               value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-              message: 'Password should contain at least one number and one special character',
+              message: `* ${t('passwordWarning2')}`,
             },
             minLength: {
               value: 8,
-              message: 'Password must be more than 8 characters',
+              message: `* ${t('passwordWarning3')}`,
             },
             maxLength: {
               value: 20,
-              message: 'Password must be less than 20 characters',
+              message: `* ${t('passwordWarning4')}`,
             },
           })}
           onKeyUp={() => {
@@ -88,18 +98,24 @@ function SignIn({ active, setActive }: IAuthorization) {
           }}
           message={errors.password?.message as string}
         />
-        <button type="submit">Register</button>
-      </form>
-      {message && <ErrorModal message={message} />}
-      <div>
-        Already have an account?
-        <button type="button" onClick={() => setActive(!active)}>
-          Login
+        <button className="authorization-page__form-button" type="submit">
+          {t('signupLink')}
         </button>
-        now.
-      </div>
+      </form>
+      {message && <ErrorModal message={message} setMessage={setMessage} />}
+      <p className="authorization-page__text">
+        {t('registerText4')}
+        <button
+          className="authorization-page__link"
+          type="button"
+          onClick={() => setActive(!active)}
+        >
+          {t('loginLink')}
+        </button>
+        {t('registerText3')}
+      </p>
     </div>
   );
 }
 
-export default SignIn;
+export default SignUp;

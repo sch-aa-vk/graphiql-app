@@ -20,13 +20,15 @@ function AuthorizationInput({
     <div className="authorization-input">
       <input
         type={type}
+        className={`authorization-input__input ${
+          message ? 'authorization-input__input-error' : ''
+        }`}
         placeholder={placeholder}
         autoComplete="off"
-        required
         {...register}
         onKeyUp={onKeyUp}
       />
-      {message && <small>{message as string}</small>}
+      {message && <small className="authorization-input__error">{message as string}</small>}
     </div>
   );
 }
