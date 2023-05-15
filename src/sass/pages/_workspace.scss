@@ -1,6 +1,13 @@
 $border: 1px solid $color-primary;
 $border-radius: 5px;
 
+.main__wrapper {
+  min-width: inherit;
+  min-height: inherit;
+  display: flex;
+  align-items: stretch;
+}
+
 .workspace {
   display: flex;
   width: 100%;
