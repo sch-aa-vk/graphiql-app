@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../utils/firebase';
 import { IAuthorization } from '../../utils/types';
-import AuthorizationInput from '../../components/AuthorizationInput';
+import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
 
 function SignUp({ active, setActive }: IAuthorization) {

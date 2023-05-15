@@ -3,7 +3,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
-import AuthorizationInput from '../../components/AuthorizationInput';
+import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
 import mail from '../../assets/icons/mail-reset.svg';
 

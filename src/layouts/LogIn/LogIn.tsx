@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { IAuthorization } from '../../utils/types';
-import AuthorizationInput from '../../components/AuthorizationInput';
+import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { auth } from '../../utils/firebase';
 import { ErrorModal } from '../../components';
 
