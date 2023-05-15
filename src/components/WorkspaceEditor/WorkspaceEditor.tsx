@@ -1,93 +1,124 @@
-import { useCallback, useState } from 'react';
-import CodeMirror from '@uiw/react-codemirror';
-import xmark from '../../assets/icons/xmark.svg';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  variablesClick,
+  headersClick,
+  togglerClick,
+  toolsCodemirrorChange,
+  addClick,
+  editorTabSelect,
+  editorTabClose,
+  variablesActive,
+  headersActive,
+  toolsCodemirrorVisible,
+  toolsCodemirrorText,
+  currentEditorTabId,
+  editorTabs,
+  editorCodemirrorText,
+  editorCodemirrorChange,
+} from '../../store/workspaceEditorSlice';
+import WorkspaceButton from './WorkspaceButton';
+import WorkspaceCodemirror from './WorkspaceCodeMirror';
+import WorkspaceEditorTab from './WorkspaceEditorTab';
 
 function Editor() {
-  const [toolCMVisible, setToolCMVisible] = useState(false);
-  const onChangeCM = useCallback((value: string) => value, []);
-  const onChangeToolCM = useCallback((value: string) => value, []);
-  const [newTabId, setNewTabId] = useState(1);
-  const [tabsIds, setTabsIds] = useState([newTabId]);
-
-  const handleAddClick = () => {
-    setNewTabId(newTabId + 1);
-    setTabsIds([newTabId + 1, ...tabsIds]);
-  };
-
-  const handleRunClick = () => {};
-
-  const handleCloseTabClick = () => {};
+  const dispatch = useDispatch();
+  const currentEditorTabIdVal = useSelector(currentEditorTabId);
 
   return (
     <div className="workspace__editor">
       <div className="workspace__editor-tabs-wrapper">
         <div className="workspace__editor-tabs">
-          {/* TODO: вынести таб в отдельный компонент, ему требуется стейт */}
-          {tabsIds.map((el) => (
-            <div className="workspace__editor-tab-wrapper" key={`w${el}`}>
-              <button className="workspace__editor-tab btn_rectangle" type="button" key={el}>
-                {`# ${el}`}
-              </button>
-              <button
-                className="workspace__editor-tab_close"
-                type="button"
-                key={`c${el}`}
-                style={{ backgroundImage: `url(${xmark})` }}
-                onClick={handleCloseTabClick}
-              >
-                {' '}
-              </button>
-            </div>
+          {useSelector(editorTabs).map((el) => (
+            <WorkspaceEditorTab
+              {...{
+                editorTabId: el.editorTabId,
+                currentEditorTabId: currentEditorTabIdVal,
+                handleSelect: (editorTabId: number) => {
+                  dispatch(editorTabSelect(editorTabId));
+                },
+                handleClose: (editorTabId: number) => {
+                  dispatch(editorTabClose(editorTabId));
+                },
+              }}
+              key={el.editorTabId}
+            />
           ))}
         </div>
         <div className="workspace__editor-btns">
-          <button
-            className="workspace__editor-tabs-add btn_square"
-            type="button"
-            onClick={handleAddClick}
-          >
-            add
-          </button>
-          <button
-            className="workspace__editor-tabs-run btn_square"
-            type="button"
-            onClick={handleRunClick}
-          >
-            run
-          </button>
+          <WorkspaceButton
+            {...{
+              className: 'workspace__editor-tabs-add btn_square',
+              handleClick: () => {
+                dispatch(addClick());
+              },
+            }}
+          />
+          <WorkspaceButton
+            {...{
+              className: 'workspace__editor-tabs-run btn_square',
+            }}
+          />
         </div>
       </div>
-      <CodeMirror
-        className="workspace__codemirror"
-        value="# console.log('hello world!');"
-        onChange={onChangeCM}
-        style={{
-          maxHeight: `${toolCMVisible ? 50 : 100}%`,
+      <WorkspaceCodemirror
+        {...{
+          className: 'workspace__codemirror',
+          value: useSelector(editorCodemirrorText),
+          handleChange: useCallback(
+            (value: string) => {
+              dispatch(editorCodemirrorChange(value));
+            },
+            // eslint-disable-next-line @typescript-eslint/comma-dangle
+            [dispatch]
+          ),
         }}
       />
       <div className="workspace__editor-tools">
-        <button className="btn_rectangle" type="button">
-          Variables
-        </button>
-        <button className="btn_rectangle" type="button">
-          Headers
-        </button>
-        <button
-          className="workspace__editor-tools-toggler btn_square"
-          type="button"
-          onClick={() => setToolCMVisible(!toolCMVisible)}
-        >
-          tggl
-        </button>
-      </div>
-      {toolCMVisible && (
-        <CodeMirror
-          className="workspace__tool-codemirror"
-          value=""
-          onChange={onChangeToolCM}
-          style={{ maxHeight: '50%' }}
+        <WorkspaceButton
+          {...{
+            text: 'Variables',
+            className: 'workspace__editor-tools-variables btn_rectangle',
+            active: useSelector(variablesActive),
+            handleClick: () => {
+              dispatch(variablesClick());
+            },
+          }}
         />
-      )}
+        <WorkspaceButton
+          {...{
+            text: 'Headers',
+            className: 'workspace__editor-tools-headers btn_rectangle',
+            active: useSelector(headersActive),
+            handleClick: () => {
+              dispatch(headersClick());
+            },
+          }}
+        />
+        <WorkspaceButton
+          {...{
+            className: 'workspace__editor-tools-toggler btn_square',
+            active: useSelector(toolsCodemirrorVisible),
+            handleClick: () => {
+              dispatch(togglerClick());
+            },
+          }}
+        />
+      </div>
+      <WorkspaceCodemirror
+        {...{
+          className: 'workspace__tool-codemirror',
+          value: useSelector(toolsCodemirrorText),
+          visible: useSelector(toolsCodemirrorVisible),
+          handleChange: useCallback(
+            (value: string) => {
+              dispatch(toolsCodemirrorChange(value));
+            },
+            // eslint-disable-next-line @typescript-eslint/comma-dangle
+            [dispatch]
+          ),
+        }}
+      />
     </div>
   );
 }

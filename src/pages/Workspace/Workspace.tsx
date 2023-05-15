@@ -1,6 +1,9 @@
 import { Splitter, SplitterPanel } from 'primereact/splitter';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { docsClick, docsPanelVisible, docsFetched } from '../../store/workspaceSlice';
 import { WorkspaceEditor } from '../../components';
+import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 
 enum Layout {
   horizontal = 'horizontal',
@@ -9,30 +12,27 @@ enum Layout {
 
 function Workspace() {
   const layout = useRef(window.innerWidth).current > 480 ? Layout.horizontal : Layout.vertical;
-  const [docsVisible, setDocsVisible] = useState(false);
-  const [docsFetched, setDocsFetched] = useState(false);
-
-  useEffect(() => {
-    setDocsFetched(true);
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <section className="workspace wrapper">
       <aside className="workspace__sidebar">
-        <button
-          className="workspace__docs-btn btn_square"
-          type="button"
-          onClick={() => setDocsVisible(!docsVisible)}
-          disabled={!docsFetched}
-        >
-          docs
-        </button>
+        <WorkspaceButton
+          {...{
+            className: 'workspace__docs-btn btn_square',
+            active: useSelector(docsPanelVisible),
+            handleClick: () => {
+              dispatch(docsClick());
+            },
+            disabled: !useSelector(docsFetched),
+          }}
+        />
       </aside>
       <Splitter className="workspace__splitter-1" layout={layout}>
         <SplitterPanel
           className="workspace-docs-wrapper"
           size={100 / 3}
-          style={docsVisible ? { display: 'block' } : { display: 'none' }}
+          style={useSelector(docsPanelVisible) ? { display: 'block' } : { display: 'none' }}
         >
           docs
         </SplitterPanel>

@@ -19,6 +19,24 @@ $border-radius: 5px;
   border-bottom-left-radius: $border-radius;
 }
 
+.workspace__docs-btn {
+  background-image: url('../assets/icons/docs.svg');
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.workspace__docs-btn.active {
+  background-image: url('../assets/icons/docs-active.svg');
+}
+
+.workspace__docs-btn:hover {
+  background-color: rgb(230, 230, 230);
+}
+
 .workspace__splitter-1 {
   width: 100%;
   overflow: hidden;
@@ -48,14 +66,19 @@ $border-radius: 5px;
 
 .workspace__editor-tabs {
   display: flex;
+  align-items: flex-start;
   column-gap: 5px;
   min-height: 50px;
   overflow-x: auto;
 }
 
-.workspace__editor-tab-wrapper {
+.workspace__editor-tab {
   display: flex;
   position: relative;
+}
+
+.workspace__editor-tab.active {
+  border: 2px solid $color-primary;
 }
 
 .workspace__editor-tab_close {
@@ -64,9 +87,11 @@ $border-radius: 5px;
   position: absolute;
   top: 3px;
   right: 3px;
+  background-image: url('../assets/icons/xmark.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  background-color: transparent;
   border: none;
   transition: 0.3s;
 }
@@ -83,6 +108,34 @@ $border-radius: 5px;
 .workspace__editor-btns {
   display: flex;
   justify-content: space-between;
+}
+
+.workspace__editor-tabs-add {
+  background-image: url('../assets/icons/plus.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.workspace__editor-tabs-add:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.workspace__editor-tabs-run {
+  background-image: url('../assets/icons/play.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.workspace__editor-tabs-run:hover {
+  background-color: rgb(230, 230, 230);
 }
 
 .workspace__codemirror {
@@ -106,6 +159,21 @@ $border-radius: 5px;
 
 .workspace__editor-tools-toggler {
   margin-left: auto;
+  background-image: url('../assets/icons/v-toggler.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.workspace__editor-tools-toggler:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.workspace__editor-tools-toggler.active {
+  transform: rotate(180deg);
 }
 
 .workspace__tool-codemirror {
@@ -128,6 +196,11 @@ $border-radius: 5px;
 .workspace .btn_rectangle {
   width: 90px;
   height: 30px;
+}
+
+.workspace__editor-tools-variables.active,
+.workspace__editor-tools-headers.active {
+  border: 2px solid $color-primary;
 }
 
 .p-splitter-horizontal>.p-splitter-gutter>.p-splitter-gutter-handle {

@@ -7,7 +7,7 @@ export function App() {
     <div className="app">
       <Header />
       <main className="main">
-        {false && <Workspace />}
+        {true && <Workspace />}
         <div className="huge" />
       </main>
       <Footer />
