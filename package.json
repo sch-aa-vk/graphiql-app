@@ -5,27 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run lint && tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .tsx --ext .ts",
-    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
+    "lint": "eslint --ext tsx,ts src",
+    "lint-fix": "eslint --fix --ext tsx,ts src",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@uiw/react-codemirror": "^4.19.16",
+    "buffer": "^6.0.3",
     "codemirror-graphql": "^2.0.7",
     "firebase": "^9.21.0",
-    "primereact": "^9.3.1",
-    "buffer": "^6.0.3",
-    "firebase": "^9.21.0",
+    "gh-pages": "^5.0.0",
     "i18next": "^22.4.15",
+    "primereact": "^9.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.9",
     "react-hooks": "^1.0.1",
-    "react-redux": "^8.0.5",
     "react-i18next": "^12.2.2",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.0"
   },
   "devDependencies": {
