@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import LogIn from '../../layouts/LogIn/LogIn';
-import SignIn from '../../layouts/SignUp/SignUp';
+import { useTranslation } from 'react-i18next';
+import { LogIn, SignUp } from '../../layouts';
 
 function Authorization() {
   const [isBtnActive, setIsBtnActive] = useState(true);
+  const { t } = useTranslation();
 
   const handleActiveBtn = () => {
     setIsBtnActive(!isBtnActive);
@@ -19,7 +20,7 @@ function Authorization() {
             disabled={isBtnActive}
             onClick={handleActiveBtn}
           >
-            <p className="authorization-page__button-text">Log In</p>
+            <p className="authorization-page__button-text">{t('loginLink')}</p>
           </button>
           <button
             className="authorization-page__button"
@@ -27,13 +28,13 @@ function Authorization() {
             disabled={!isBtnActive}
             onClick={handleActiveBtn}
           >
-            <p className="authorization-page__button-text">Sign Up</p>
+            <p className="authorization-page__button-text">{t('signupLink')}</p>
           </button>
         </div>
         {isBtnActive ? (
           <LogIn active={isBtnActive} setActive={setIsBtnActive} />
         ) : (
-          <SignIn active={isBtnActive} setActive={setIsBtnActive} />
+          <SignUp active={isBtnActive} setActive={setIsBtnActive} />
         )}
       </div>
     </div>

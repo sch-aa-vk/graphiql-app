@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
@@ -16,6 +17,7 @@ function ResetPassword() {
   } = useForm();
   const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
+  const { t } = useTranslation();
 
   const handleReset = (data: FieldValues) => {
     (async () => {
@@ -34,16 +36,16 @@ function ResetPassword() {
         <div className="authorization-page__decoration">
           <img className="authorization-page__decoration-image" src={mail} alt="" />
         </div>
-        <p className="authorization-page__title">Reset Password</p>
+        <p className="authorization-page__title">{t('resetText')}</p>
         <form className="authorization-page__form" onSubmit={handleSubmit(handleReset)}>
           <AuthorizationInput
             type="email"
-            placeholder="Email address"
+            placeholder={t('emailPlaceholder')}
             register={register('email', {
-              required: '* Email is Required!',
+              required: `* ${t('emailWarning')}`,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: '* Invalid email address',
+                message: `* ${t('emailWarning2')}`,
               },
             })}
             onKeyUp={() => {
@@ -52,25 +54,25 @@ function ResetPassword() {
             message={errors.email?.message as string}
           />
           <button className="authorization-page__form-button" type="submit">
-            Reset email
+            {t('resetText')}
           </button>
         </form>
         {message && <ErrorModal message={message} setMessage={setMessage} />}
         {success && (
           <p className="authorization-page__text">
-            Please check your email to reset password.
+            {t('resetText2')}
             <Link to="/auth" className="authorization-page__link">
-              Log In
+              {t('loginLink')}
             </Link>
-            now.
+            {t('registerText3')}
           </p>
         )}
         <p className="authorization-page__text">
-          Don&apos;t have an account?
+          {t('registerText')}
           <Link className="authorization-page__link" to="/">
-            Register
+            {t('registerText2')}
           </Link>
-          now.
+          {t('registerText3')}
         </p>
       </div>
     </div>

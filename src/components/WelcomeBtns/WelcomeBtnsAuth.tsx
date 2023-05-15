@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 function WelcomeBtnsAuth() {
+  const { t } = useTranslation();
+
   return (
     <div className="auth-block">
       <button type="button" className="auth-block__btn">
-        Go to Main Page
+        {t('mainLink')}
       </button>
     </div>
   );

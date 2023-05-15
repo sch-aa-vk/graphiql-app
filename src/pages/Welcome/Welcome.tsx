@@ -1,4 +1,5 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../../components';
 import projectImageObj from '../../assets/images/project.png';
 import rssImageObj from '../../assets/images/rssckool-yellow.jpg';
@@ -6,6 +7,7 @@ import { auth } from '../../utils/firebase';
 
 function Welcome() {
   const [user] = useAuthState(auth);
+  const { t } = useTranslation();
 
   return (
     <div className="welcome-page">
@@ -13,12 +15,12 @@ function Welcome() {
         <div className="welcome-page__container">
           {user ? <WelcomeBtnsAuth /> : <WelcomeBtnsAnonim />}
           <div className="project-info">
-            <h2 className="project-info__title">About team</h2>
+            <h2 className="project-info__title">{t('aboutTeam')}</h2>
             <div className="project-info__devs">
               <DeveloperInfo
                 ghLink="https://github.com/sch-aa-vk/"
                 ghName="sch-aa-vk"
-                devName="Amina Senchenko"
+                devName={t('amina')}
                 ghAvatarLink="https://avatars.githubusercontent.com/u/89934145?v=4"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus, urna vel
@@ -30,7 +32,7 @@ function Welcome() {
               <DeveloperInfo
                 ghLink="https://github.com/redcliphaloe"
                 ghName="redcliphaloe"
-                devName="Artem Siuzev"
+                devName={t('artem')}
                 ghAvatarLink="https://avatars.githubusercontent.com/u/14157545?v=4"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus, urna vel
@@ -42,7 +44,7 @@ function Welcome() {
               <DeveloperInfo
                 ghLink="https://github.com/EvgeniaM6"
                 ghName="EvgeniaM6"
-                devName="Yevheniia Miniukova"
+                devName={t('yevheniia')}
                 ghAvatarLink="https://avatars.githubusercontent.com/u/93492831?v=4"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus, urna vel
@@ -52,7 +54,7 @@ function Welcome() {
                 viverra luctus. In gravida.
               </DeveloperInfo>
             </div>
-            <h2 className="project-info__title">About project</h2>
+            <h2 className="project-info__title">{t('aboutProject')}</h2>
             <div className="project-info__container flex-reverse">
               <div className="project-info__content">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna,
@@ -69,7 +71,7 @@ function Welcome() {
                 <img src={projectImageObj} alt="project" className="project-info__image-img" />
               </div>
             </div>
-            <h2 className="project-info__title">About course</h2>
+            <h2 className="project-info__title">{t('aboutCourse')}</h2>
             <div className="project-info__container">
               <div className="project-info__content">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam molestie mi magna,
