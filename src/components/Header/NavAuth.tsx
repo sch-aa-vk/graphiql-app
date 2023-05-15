@@ -1,7 +1,9 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { logout } from '../../utils/firebase';
 
 function NavAuth() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleLogout = () => {
     logout();
@@ -12,12 +14,12 @@ function NavAuth() {
     <ul className="navigation__list">
       <li className="navigation__item">
         <NavLink to="/" className="navigation__link">
-          Welcome
+          {t('homeLink')}
         </NavLink>
       </li>
       <li className="navigation__item">
         <NavLink to="/workspace" className="navigation__link">
-          Workspace
+          {t('workLink')}
         </NavLink>
       </li>
       <li className="navigation__item">
@@ -26,7 +28,7 @@ function NavAuth() {
           className="navigation__link navigation__link-button"
           onClick={handleLogout}
         >
-          Sign Out
+          {t('signoutLink')}
         </button>
       </li>
     </ul>
