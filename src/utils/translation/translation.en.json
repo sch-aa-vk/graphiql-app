@@ -3,6 +3,7 @@
   "loginLink": "Sign In",
   "signupLink": "Sign Up",
   "signoutLink": "Sign Out",
+  "mainLink": "Go to Main Page",
   "workLink": "Workspace",
   "emailPlaceholder": "Email address",
   "emailWarning": "Email is Required!",
@@ -21,5 +22,11 @@
   "nameWarning": "Fullname is Required!",
   "nameWarning2": "Name must be longer than 4 symbols",
   "resetText": "Reset password",
-  "resetText2": "Please check your email to reset password"
+  "resetText2": "Please check your email to reset password",
+  "aboutTeam": "About team",
+  "aboutProject": "About project",
+  "aboutCourse": "About course",
+  "amina": "Amina Senchenko",
+  "artem": "Artem Siuzev",
+  "yevheniia": "Yevheniia Miniukova"
 }
