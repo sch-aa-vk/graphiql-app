@@ -8,14 +8,6 @@ function Schema(props: { schema: GraphQLSchema }) {
   const { schema } = props;
   const { nestedObjsArr } = useAppSelector((state) => state.workspace);
   const queryType = schema.getQueryType();
-  // const mutationType = schema.getMutationType();
-  // const subscriptionType = schema.getSubscriptionType();
-  // const typeMap = schema.getTypeMap();
-
-  // console.log('queryType=', queryType);
-  // console.log('mutationType=', mutationType);
-  // console.log('subscriptionType=', subscriptionType);
-  // console.log('typeMap=', typeMap);
 
   const dispatch = useAppDispatch();
 
@@ -36,6 +28,7 @@ function Schema(props: { schema: GraphQLSchema }) {
     <div>
       {nestedObjsArr.length ? (
         <button type="button" onClick={handleBack}>
+          <span>❮</span>
           {nestedObjsArr[nestedObjsArr.length - 1].name}
         </button>
       ) : (
