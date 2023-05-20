@@ -1,4 +1,4 @@
-import { GraphQLObjectType, isInputObjectType, isListType, isScalarType } from 'graphql/type';
+import { isInputObjectType, isListType, isScalarType } from 'graphql/type';
 import FieldItem from './FieldItem';
 import SchemaField from './SchemaField';
 import { TGrphQLField, TNestedObjs } from '../../models';
@@ -7,21 +7,6 @@ function SchemaItem(props: { graphqlType: TNestedObjs | null }): JSX.Element {
   const { graphqlType } = props;
 
   if (!graphqlType) return <div />;
-
-  if (graphqlType.name === 'Query' && graphqlType instanceof GraphQLObjectType) {
-    if (!graphqlType.getFields) return <div />;
-    const fields = graphqlType.getFields();
-    const fieldsArray = Object.entries(fields);
-
-    return (
-      <div>
-        <p>Fields</p>
-        {(fieldsArray ?? []).map(([fieldName, fieldObj]) => (
-          <FieldItem key={fieldName} fieldName={fieldName} fieldObj={fieldObj} />
-        ))}
-      </div>
-    );
-  }
 
   if (isScalarType(graphqlType)) {
     return <div>{graphqlType.description}</div>;
@@ -45,15 +30,12 @@ function SchemaItem(props: { graphqlType: TNestedObjs | null }): JSX.Element {
     );
   }
 
-  if (isInputObjectType((graphqlType as TGrphQLField).type)) {
-    return <SchemaField fieldObj={graphqlType} />;
-  }
+  const graphqlTypeType = (graphqlType as TGrphQLField).type;
+  const isList = isListType(graphqlTypeType);
+  const isScalar = isScalarType(graphqlTypeType);
+  const isInputObj = isInputObjectType(graphqlTypeType);
 
-  if (isListType((graphqlType as TGrphQLField).type)) {
-    return <SchemaField fieldObj={graphqlType} />;
-  }
-
-  if (isScalarType((graphqlType as TGrphQLField).type)) {
+  if (isList || isScalar || isInputObj) {
     return <SchemaField fieldObj={graphqlType} />;
   }
 
