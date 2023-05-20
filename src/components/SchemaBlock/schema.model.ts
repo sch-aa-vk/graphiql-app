@@ -1,12 +1,18 @@
-import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLScalarType } from 'graphql';
+import {
+  GraphQLInputObjectType,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLScalarType,
+} from 'graphql';
 
 export type TFieldArgType = {
-  ofType: Rrr;
+  ofType: IScalarWithName;
   [Symbol.toStringTag]: string;
   toJSON: () => string;
 };
 
-export interface Rrr extends GraphQLScalarType {
+export interface IScalarWithName extends GraphQLScalarType {
   name: string;
 }
 
@@ -16,3 +22,5 @@ export type TGrphQLListNonNullScalar = GraphQLList<TGrphQLNonNullObj>;
 export type TGrphQLNonNullObj = GraphQLNonNull<GraphQLObjectType>;
 export type TGrphQLOfTypeObj = GraphQLList<TGrphQLNonNullObj>;
 export type TGrphQLOfTypeNonNullObj = GraphQLNonNull<TGrphQLOfTypeObj>;
+
+export type TNestedObj = GraphQLObjectType | GraphQLInputObjectType | GraphQLScalarType | null;

@@ -3,10 +3,9 @@ import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { GraphQLSchema } from 'graphql';
 import { useDispatch, useSelector } from 'react-redux';
 import { docsClick, docsPanelVisible, docsFetched, fetchDocs } from '../../store/workspaceSlice';
-import { WorkspaceEditor } from '../../components';
+import { SchemaLoading, WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 import getShema from '../../utils/getSchema';
-import { SchemaLoading } from '../../components/SchemaBlock';
 
 enum Layout {
   horizontal = 'horizontal',

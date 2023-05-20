@@ -1,9 +1,4 @@
-import {
-  GraphQLInputObjectType,
-  GraphQLNonNull,
-  GraphQLObjectType,
-  GraphQLScalarType,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLObjectType, GraphQLScalarType } from 'graphql';
 import { useAppDispatch } from '../../hooks/storeHooks';
 import { addNestedObj } from '../../store/workspaceSlice';
 import {
@@ -11,10 +6,9 @@ import {
   TGrphQLNonNullScalar,
   TGrphQLOfTypeNonNullObj,
   TGrphQLOfTypeObj,
+  TNestedObj,
 } from './schema.model';
 import { TGrphQLField } from '../../models';
-
-type TnestedObj = GraphQLObjectType | GraphQLInputObjectType | GraphQLScalarType | null;
 
 function FieldReturnTypeItem(props: { fieldObj: TGrphQLField }) {
   const { fieldObj } = props;
@@ -24,7 +18,7 @@ function FieldReturnTypeItem(props: { fieldObj: TGrphQLField }) {
   const isGraphQLObjectType = 'name' in fieldObjType;
   const haveOfType = 'ofType' in fieldObjType;
 
-  let nestedObj: TnestedObj = null;
+  let nestedObj: TNestedObj = null;
 
   if (isGraphQLObjectType) {
     nestedObj = fieldObjType as GraphQLObjectType;

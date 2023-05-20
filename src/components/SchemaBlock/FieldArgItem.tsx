@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 import { useAppDispatch } from '../../hooks/storeHooks';
 import { addNestedObj } from '../../store/workspaceSlice';
-import { Rrr } from './schema.model';
+import { IScalarWithName } from './schema.model';
 
 function FieldArgItem(props: { fieldArg: GraphQLArgument }) {
   const { fieldArg } = props;
@@ -29,7 +29,7 @@ function FieldArgItem(props: { fieldArg: GraphQLArgument }) {
         type="button"
         onClick={handleClickArg}
       >
-        {isFieldTypeCode ? `${(fieldArgType.ofType as Rrr).name}` : fieldArgType?.name}
+        {isFieldTypeCode ? `${(fieldArgType.ofType as IScalarWithName).name}` : fieldArgType?.name}
       </button>
       {fieldArgType instanceof GraphQLNonNull && <span>!</span>}
       {!isFieldTypeCode && (
