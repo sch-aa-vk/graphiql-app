@@ -52,7 +52,11 @@ function FieldReturnTypeItem(props: { fieldObj: TGrphQLField }) {
   return (
     <>
       {haveOfType && <span>{'ofType' in fieldObjType.ofType && '['}</span>}
-      <button type="button" onClick={handleClickReturnType}>
+      <button
+        className="fields__return schema-btn primary"
+        type="button"
+        onClick={handleClickReturnType}
+      >
         {grphQLOfTypeObjName}
       </button>
       {!isGraphQLObjectType && (

@@ -21,11 +21,13 @@ function SchemaItem(props: { graphqlType: TNestedObjs | null }): JSX.Element {
     const fieldsArray = Object.entries(fields);
 
     return (
-      <div>
-        <p>Fields</p>
-        {(fieldsArray ?? []).map(([fieldName, fieldObj]) => (
-          <FieldItem key={fieldName} fieldName={fieldName} fieldObj={fieldObj} />
-        ))}
+      <div className="schema__fields fields">
+        <p className="fields__title schema-title">Fields</p>
+        <div className="fields__block">
+          {(fieldsArray ?? []).map(([fieldName, fieldObj]) => (
+            <FieldItem key={fieldName} fieldName={fieldName} fieldObj={fieldObj} />
+          ))}
+        </div>
       </div>
     );
   }

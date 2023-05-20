@@ -25,19 +25,20 @@ function Schema(props: { schema: GraphQLSchema }) {
   };
 
   return (
-    <div>
+    <div className="schema__container">
       {nestedObjsArr.length ? (
-        <button type="button" onClick={handleBack}>
-          <span>❮</span>
+        <button type="button" onClick={handleBack} className="schema__back-btn">
+          <span className="schema__back-btn-arrow">❮</span>
           {nestedObjsArr[nestedObjsArr.length - 1].name}
         </button>
       ) : (
-        <p>Docs</p>
+        <h4 className="schema__docs-title">Docs</h4>
       )}
       {queryType && !nestedObjsArr.length && (
-        <div>
-          <span>query:</span>
-          <button type="button" onClick={handleClickQuery}>
+        <div className="schema__query left-indent">
+          <span className="schema__query-title">query</span>
+          <span className="fields__devider">:</span>
+          <button className="schema-btn primary" type="button" onClick={handleClickQuery}>
             Query
           </button>
         </div>

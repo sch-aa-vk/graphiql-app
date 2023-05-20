@@ -18,18 +18,22 @@ function FieldItem(props: { fieldName: string; fieldObj: TGrphQLField }): JSX.El
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleClickField}>
-        {`${fieldName}:`}
+    <div className="fields__item">
+      <button
+        className="fields__name schema-btn secondary"
+        type="button"
+        onClick={handleClickField}
+      >
+        {`${fieldName}`}
       </button>
       {fieldArg && (
         <>
-          <span>(</span>
+          <span className="left-indent">(</span>
           <FieldArgItem fieldArg={fieldArg} />
           <span>)</span>
         </>
       )}
-      <span>:</span>
+      <span className="fields__devider">:</span>
       <FieldReturnTypeItem fieldObj={fieldObj} />
       {fieldObjType instanceof GraphQLNonNull && <span>!</span>}
     </div>

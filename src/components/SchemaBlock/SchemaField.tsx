@@ -9,11 +9,13 @@ function SchemaField(props: { fieldObj: TGrphQLField }) {
 
   return (
     <div>
-      <p>Type:</p>
-      <FieldReturnTypeItem fieldObj={fieldObj} />
+      <p className="schema-title">Type:</p>
+      <div className="left-indent">
+        <FieldReturnTypeItem fieldObj={fieldObj} />
+      </div>
       {!!fieldArgsArr.length && (
         <>
-          <p>Arguments:</p>
+          <p className="schema-title">Arguments:</p>
           {fieldArgsArr.map((fieldArg) => (
             <div key={fieldArg.name}>
               <FieldArgItem fieldArg={fieldArg} />

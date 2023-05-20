@@ -22,12 +22,22 @@ function FieldArgItem(props: { fieldArg: GraphQLArgument }) {
 
   return (
     <>
-      <span>{`${fieldArg.name}:`}</span>
-      <button type="button" onClick={handleClickArg}>
+      <span className="fields__arg-name">{fieldArg.name}</span>
+      <span className="fields__devider">:</span>
+      <button
+        className="fields__arg-types schema-btn primary"
+        type="button"
+        onClick={handleClickArg}
+      >
         {isFieldTypeCode ? `${(fieldArgType.ofType as Rrr).name}` : fieldArgType?.name}
       </button>
       {fieldArgType instanceof GraphQLNonNull && <span>!</span>}
-      {!isFieldTypeCode && <span>{' = {}'}</span>}
+      {!isFieldTypeCode && (
+        <>
+          <span>{' = '}</span>
+          <span className="fields__arg-default">{'{}'}</span>
+        </>
+      )}
     </>
   );
 }
