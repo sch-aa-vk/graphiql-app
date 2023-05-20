@@ -2,7 +2,7 @@ import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { docsClick, docsPanelVisible, docsFetched } from '../../store/workspaceSlice';
-import { WorkspaceEditor } from '../../components';
+import { SchemaBlock, WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 
 enum Layout {
@@ -35,7 +35,7 @@ function Workspace() {
             size={100 / 3}
             style={useSelector(docsPanelVisible) ? { display: 'block' } : { display: 'none' }}
           >
-            docs
+            <SchemaBlock />
           </SplitterPanel>
           <SplitterPanel size={200 / 3}>
             <Splitter className="workspace__splitter-2" layout={layout}>
