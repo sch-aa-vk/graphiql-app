@@ -1,22 +1,14 @@
 import { GraphQLSchema } from 'graphql';
-import { useEffect, useState } from 'react';
 import Schema from './Schema';
-import getShema from '../../utils/getSchema';
 
-function SchemaBlock() {
-  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+function SchemaBlock(props: { schema: GraphQLSchema | null }) {
+  const { schema } = props;
 
-  useEffect(() => {
-    getShema()
-      .then((grphQLSchema) => {
-        setSchema(grphQLSchema);
-      })
-      .catch((err) => {
-        console.log('err=', err);
-      });
-  }, [setSchema]);
-
-  return <div className="schema">{schema && <Schema schema={schema} />}</div>;
+  return (
+    <div className="schema">
+      {schema ? <Schema schema={schema} /> : <div>Schema not received</div>}
+    </div>
+  );
 }
 
 export default SchemaBlock;

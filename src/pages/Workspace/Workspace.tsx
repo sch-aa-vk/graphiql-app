@@ -1,18 +1,36 @@
 import { Splitter, SplitterPanel } from 'primereact/splitter';
-import { useRef } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { GraphQLSchema } from 'graphql';
 import { useDispatch, useSelector } from 'react-redux';
-import { docsClick, docsPanelVisible, docsFetched } from '../../store/workspaceSlice';
-import { SchemaBlock, WorkspaceEditor } from '../../components';
+import { docsClick, docsPanelVisible, docsFetched, fetchDocs } from '../../store/workspaceSlice';
+import { WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
+import getShema from '../../utils/getSchema';
+import { SchemaLoading } from '../../components/SchemaBlock';
 
 enum Layout {
   horizontal = 'horizontal',
   vertical = 'vertical',
 }
 
+const LazySchema = lazy(() => import('../../components/SchemaBlock/SchemaBlock'));
+
 function Workspace() {
   const layout = useRef(window.innerWidth).current > 480 ? Layout.horizontal : Layout.vertical;
   const dispatch = useDispatch();
+  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+  const isDocsPanelVisible = useSelector(docsPanelVisible);
+
+  useEffect(() => {
+    getShema()
+      .then((grphQLSchema) => {
+        setSchema(grphQLSchema);
+      })
+      .catch((err) => {
+        console.log('err=', err);
+      })
+      .finally(() => dispatch(fetchDocs(true)));
+  }, [setSchema, dispatch]);
 
   return (
     <div className="main__wrapper">
@@ -33,9 +51,13 @@ function Workspace() {
           <SplitterPanel
             className="workspace-docs-wrapper"
             size={100 / 3}
-            style={useSelector(docsPanelVisible) ? { display: 'block' } : { display: 'none' }}
+            style={isDocsPanelVisible ? { display: 'block' } : { display: 'none' }}
           >
-            <SchemaBlock />
+            {isDocsPanelVisible && (
+              <Suspense fallback={<SchemaLoading />}>
+                <LazySchema schema={schema} />
+              </Suspense>
+            )}
           </SplitterPanel>
           <SplitterPanel size={200 / 3}>
             <Splitter className="workspace__splitter-2" layout={layout}>

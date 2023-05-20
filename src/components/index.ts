@@ -6,7 +6,6 @@ import DeveloperInfo from './DeveloperInfo/DeveloperInfo';
 import WelcomeBtnsAnonim from './WelcomeBtns/WelcomeBtnsAnonim';
 import WelcomeBtnsAuth from './WelcomeBtns/WelcomeBtnsAuth';
 import WorkspaceEditor from './WorkspaceEditor/WorkspaceEditor';
-import SchemaBlock from './SchemaBlock/SchemaBlock';
 
 export {
   Header,
@@ -17,5 +16,4 @@ export {
   WelcomeBtnsAnonim,
   WelcomeBtnsAuth,
   WorkspaceEditor,
-  SchemaBlock,
 };

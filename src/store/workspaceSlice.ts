@@ -4,7 +4,7 @@ import { State, TNestedObjs, Workspace } from '../models';
 
 const initialState: Workspace = {
   docsPanelVisible: false,
-  docsFetched: true,
+  docsFetched: false,
   nestedObjsArr: [],
 };
 
@@ -14,6 +14,9 @@ const workspaceSlice = createSlice({
   reducers: {
     docsClick: (state) => {
       state.docsPanelVisible = !state.docsPanelVisible;
+    },
+    fetchDocs: (state, action: PayloadAction<boolean>) => {
+      state.docsFetched = action.payload;
     },
     addNestedObj: (state, action: PayloadAction<TNestedObjs>) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -28,7 +31,7 @@ const workspaceSlice = createSlice({
   },
 });
 
-export const { docsClick, addNestedObj, removeLastNestedObj } = workspaceSlice.actions;
+export const { docsClick, fetchDocs, addNestedObj, removeLastNestedObj } = workspaceSlice.actions;
 
 export const docsPanelVisible = (state: State) => state.workspace.docsPanelVisible;
 export const docsFetched = (state: State) => state.workspace.docsFetched;
