@@ -52,6 +52,7 @@
       font-size: 20px;
       text-decoration: none;
       padding: 5px;
+      display: inline-block;
       
       @include media-tablet {
         color: $color-font;
@@ -66,6 +67,17 @@
       &-button {
         background: none;
         border: none;
+        font-family: 'Istok Web', sans-serif;
+      }
+    }
+
+    .language {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+
+      @include media-tablet {
+        justify-content: normal;
       }
     }
   }
