@@ -11,19 +11,24 @@ import {
   variablesActive,
   headersActive,
   toolsCodemirrorVisible,
-  toolsCodemirrorText,
   currentEditorTabId,
   editorTabs,
   editorCodemirrorText,
+  variablesText,
+  toolsCodemirrorText,
   editorCodemirrorChange,
 } from '../../store/workspaceEditorSlice';
 import WorkspaceButton from './WorkspaceButton';
 import WorkspaceCodemirror from './WorkspaceCodeMirror';
 import WorkspaceEditorTab from './WorkspaceEditorTab';
+import { useSendRequestMutation } from '../../store/countriesApiSlice';
 
 function Editor() {
   const dispatch = useDispatch();
   const currentEditorTabIdVal = useSelector(currentEditorTabId);
+  const editorCodemirrorTextVal = useSelector(editorCodemirrorText) || '';
+  const variablesTextVal = useSelector(variablesText) || '';
+  const sendRequestCountriesApi = useSendRequestMutation()[0];
 
   return (
     <div className="workspace__editor">
@@ -57,6 +62,15 @@ function Editor() {
           <WorkspaceButton
             {...{
               className: 'workspace__editor-tabs-run btn_square',
+              handleClick: () => {
+                sendRequestCountriesApi({
+                  url: '',
+                  body: {
+                    query: editorCodemirrorTextVal,
+                    variables: variablesTextVal,
+                  },
+                });
+              },
             }}
           />
         </div>

@@ -6,6 +6,8 @@ import { docsClick, docsPanelVisible, docsFetched, fetchDocs } from '../../store
 import { SchemaLoading, WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 import getShema from '../../utils/getSchema';
+import WorkspaceCodemirror from '../../components/WorkspaceEditor/WorkspaceCodeMirror';
+import { responseCodemirrorText } from '../../store/workspaceEditorSlice';
 
 enum Layout {
   horizontal = 'horizontal',
@@ -64,7 +66,12 @@ function Workspace() {
                 <WorkspaceEditor />
               </SplitterPanel>
               <SplitterPanel size={layout === Layout.horizontal ? 50 : 100 / 3}>
-                results
+                <WorkspaceCodemirror
+                  {...{
+                    className: 'workspace__response-codemirror',
+                    value: useSelector(responseCodemirrorText),
+                  }}
+                />
               </SplitterPanel>
             </Splitter>
           </SplitterPanel>
