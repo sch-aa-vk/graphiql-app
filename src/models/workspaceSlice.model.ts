@@ -5,8 +5,7 @@ import {
   GraphQLScalarType,
 } from 'graphql';
 
-// eslint-disable-next-line
-export type TGrphQLField = GraphQLField<any, any>;
+export type TGrphQLField = GraphQLField<undefined, undefined>;
 export type TNestedObjs =
   | GraphQLObjectType
   | TGrphQLField
