@@ -15,7 +15,7 @@ export type TNestedObjs =
 export interface Workspace {
   docsPanelVisible: boolean;
   docsFetched: boolean;
-  nestedObjsArr: Array<TNestedObjs>;
+  nestedObjsArr: Array<string[]>;
 }
 
 export interface State {
