@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { logout } from '../../utils/firebase';
+import LanguageSelect from '../LanguageSelect/LanguageSelect';
 
 function NavAuth() {
   const { t } = useTranslation();
@@ -12,6 +13,11 @@ function NavAuth() {
 
   return (
     <ul className="navigation__list">
+      <li className="navigation__item">
+        <div className="language">
+          <LanguageSelect />
+        </div>
+      </li>
       <li className="navigation__item">
         <NavLink to="/" className="navigation__link">
           {t('homeLink')}
