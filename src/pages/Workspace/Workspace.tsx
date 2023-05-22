@@ -31,7 +31,7 @@ function Workspace() {
         setSchema(grphQLSchema);
       })
       .catch((err) => {
-        console.log('err=', err);
+        throw new Error((err as Error).message);
       })
       .finally(() => dispatch(fetchDocs(true)));
     setWorkspaceEditorHeight(workspaceEditorRef.current.clientHeight);
