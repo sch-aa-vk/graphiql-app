@@ -1,9 +1,9 @@
 import { GraphQLNonNull } from 'graphql';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { addNestedObj } from '../../store/workspaceSlice';
+import { useAppDispatch } from '../../../hooks/storeHooks';
+import { addNestedObj } from '../../../store/workspaceSlice';
 import FieldArgItem from './FieldArgItem';
 import FieldReturnTypeItem from './FieldReturnTypeItem';
-import { TGrphQLField } from '../../models';
+import { TGrphQLField } from '../../../models';
 
 function FieldItem(props: { fieldName: string; fieldObj: TGrphQLField }): JSX.Element {
   const { fieldName, fieldObj } = props;

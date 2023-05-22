@@ -1,7 +1,7 @@
 import { GraphQLArgument, GraphQLNonNull } from 'graphql';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { addNestedObj } from '../../store/workspaceSlice';
-import { IScalarWithName } from './schema.model';
+import { useAppDispatch } from '../../../hooks/storeHooks';
+import { addNestedObj } from '../../../store/workspaceSlice';
+import { IScalarWithName } from '../schema.model';
 
 function FieldArgItem(props: { fieldArg: GraphQLArgument; keysArr: string[] }) {
   const { fieldArg, keysArr } = props;

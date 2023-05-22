@@ -1,6 +1,5 @@
 import { GraphQLSchema, isInputObjectType, isListType, isScalarType, isSchema } from 'graphql/type';
-import FieldItem from './FieldItem';
-import SchemaField from './SchemaField';
+import { FieldItem, SchemaField } from './SchemaItems';
 import { useAppSelector } from '../../hooks/storeHooks';
 import getSchemaItem from './getSchemaItem';
 import { TGrphQLField } from '../../models';

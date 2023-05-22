@@ -1,4 +1,4 @@
-import { TGrphQLField } from '../../models';
+import { TGrphQLField } from '../../../models';
 import FieldArgItem from './FieldArgItem';
 import FieldReturnTypeItem from './FieldReturnTypeItem';
 

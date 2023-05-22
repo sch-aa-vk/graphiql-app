@@ -1,14 +1,14 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLScalarType } from 'graphql';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { addNestedObj } from '../../store/workspaceSlice';
+import { useAppDispatch } from '../../../hooks/storeHooks';
+import { addNestedObj } from '../../../store/workspaceSlice';
 import {
   TGrphQLNonNullObj,
   TGrphQLNonNullScalar,
   TGrphQLOfTypeNonNullObj,
   TGrphQLOfTypeObj,
   TNestedObj,
-} from './schema.model';
-import { TGrphQLField } from '../../models';
+} from '../schema.model';
+import { TGrphQLField } from '../../../models';
 
 function FieldReturnTypeItem(props: { fieldObj: TGrphQLField; keysArr: string[] }) {
   const { fieldObj, keysArr } = props;
