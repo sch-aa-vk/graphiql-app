@@ -17,6 +17,7 @@ import {
   variablesText,
   toolsCodemirrorText,
   editorCodemirrorChange,
+  variablesInvalidJsonOccur,
 } from '../../store/workspaceEditorSlice';
 import WorkspaceButton from './WorkspaceButton';
 import WorkspaceCodemirror from './WorkspaceCodeMirror';
@@ -63,13 +64,22 @@ function Editor() {
             {...{
               className: 'workspace__editor-tabs-run btn_square',
               handleClick: () => {
-                sendRequestCountriesApi({
-                  url: '',
-                  body: {
-                    query: editorCodemirrorTextVal,
-                    variables: variablesTextVal,
-                  },
-                });
+                try {
+                  JSON.parse(variablesTextVal || '{}');
+                  sendRequestCountriesApi({
+                    url: '',
+                    body: {
+                      query: editorCodemirrorTextVal,
+                      variables: variablesTextVal || '{}',
+                    },
+                  });
+                } catch (error) {
+                  dispatch(
+                    variablesInvalidJsonOccur(
+                      `Variables are invalid JSON: ${(error as Error).message}`
+                    )
+                  );
+                }
               },
             }}
           />

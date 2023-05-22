@@ -5,21 +5,15 @@ export const countriesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/graphql' }),
   endpoints: (builder) => ({
     sendRequest: builder.mutation({
-      query: (body: FetchArgs) => {
-        try {
-          return {
-            url: '',
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              query: body.body.query,
-              variables: JSON.parse(body.body.variables || '{}'),
-            }),
-          };
-        } catch (error) {
-          throw new Error((error as Error).message);
-        }
-      },
+      query: (body: FetchArgs) => ({
+        url: '',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: body.body.query,
+          variables: JSON.parse(body.body.variables),
+        }),
+      }),
     }),
   }),
 });
