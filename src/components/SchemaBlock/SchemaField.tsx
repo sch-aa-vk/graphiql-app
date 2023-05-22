@@ -11,14 +11,14 @@ function SchemaField(props: { fieldObj: TGrphQLField }) {
     <div>
       <p className="schema-title">Type:</p>
       <div className="left-indent">
-        <FieldReturnTypeItem fieldObj={fieldObj} />
+        <FieldReturnTypeItem fieldObj={fieldObj} keysArr={[]} />
       </div>
       {!!fieldArgsArr.length && (
         <>
           <p className="schema-title">Arguments:</p>
           {fieldArgsArr.map((fieldArg) => (
-            <div key={fieldArg.name}>
-              <FieldArgItem fieldArg={fieldArg} />
+            <div key={fieldArg.name} className="left-indent">
+              <FieldArgItem fieldArg={fieldArg} keysArr={[]} />
             </div>
           ))}
         </>

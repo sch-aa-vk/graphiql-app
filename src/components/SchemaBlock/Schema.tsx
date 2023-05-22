@@ -1,8 +1,8 @@
 import { GraphQLSchema } from 'graphql';
 import SchemaItem from './SchemaItem';
-import { addNestedObj, removeLastNestedObj } from '../../store/workspaceSlice';
+import { addNestedObj } from '../../store/workspaceSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
-import { TNestedObjs } from '../../models';
+import BackSchemaBtn from './BackSchemaBtn';
 
 function Schema(props: { schema: GraphQLSchema }) {
   const { schema } = props;
@@ -11,26 +11,18 @@ function Schema(props: { schema: GraphQLSchema }) {
 
   const dispatch = useAppDispatch();
 
-  const handleBack = () => {
-    dispatch(removeLastNestedObj());
-  };
-
-  const handleClick = (nestedObj: TNestedObjs) => {
+  const handleClick = (nestedObj: string[]) => {
     dispatch(addNestedObj(nestedObj));
   };
 
   const handleClickQuery = () => {
-    if (!queryType) return;
-    handleClick(queryType);
+    handleClick(['_queries']);
   };
 
   return (
     <div className="schema__container">
       {nestedObjsArr.length ? (
-        <button type="button" onClick={handleBack} className="schema__back-btn">
-          <span className="schema__back-btn-arrow">❮</span>
-          {nestedObjsArr[nestedObjsArr.length - 1].name}
-        </button>
+        <BackSchemaBtn schema={schema} />
       ) : (
         <h4 className="schema__docs-title">Docs</h4>
       )}
@@ -43,9 +35,7 @@ function Schema(props: { schema: GraphQLSchema }) {
           </button>
         </div>
       )}
-      {!!nestedObjsArr.length && (
-        <SchemaItem graphqlType={nestedObjsArr[nestedObjsArr.length - 1]} />
-      )}
+      {!!nestedObjsArr.length && schema && <SchemaItem schema={schema} />}
     </div>
   );
 }

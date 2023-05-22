@@ -12,9 +12,10 @@ function FieldItem(props: { fieldName: string; fieldObj: TGrphQLField }): JSX.El
   const fieldObjType = fieldObj.type;
   const fieldArgsArr = fieldObj?.args || [];
   const fieldArg = fieldArgsArr.length ? fieldArgsArr[0] : null;
+  const keysArr = ['_fields', fieldName];
 
   const handleClickField = () => {
-    dispatch(addNestedObj(fieldObj));
+    dispatch(addNestedObj(keysArr));
   };
 
   return (
@@ -29,12 +30,12 @@ function FieldItem(props: { fieldName: string; fieldObj: TGrphQLField }): JSX.El
       {fieldArg && (
         <>
           <span className="left-indent">(</span>
-          <FieldArgItem fieldArg={fieldArg} />
+          <FieldArgItem fieldArg={fieldArg} keysArr={keysArr} />
           <span>)</span>
         </>
       )}
       <span className="fields__devider">:</span>
-      <FieldReturnTypeItem fieldObj={fieldObj} />
+      <FieldReturnTypeItem fieldObj={fieldObj} keysArr={keysArr} />
       {fieldObjType instanceof GraphQLNonNull && <span>!</span>}
     </div>
   );
