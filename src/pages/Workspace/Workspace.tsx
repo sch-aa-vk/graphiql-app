@@ -1,11 +1,13 @@
 import { Splitter, SplitterPanel } from 'primereact/splitter';
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { GraphQLSchema } from 'graphql';
 import { useDispatch, useSelector } from 'react-redux';
 import { docsClick, docsPanelVisible, docsFetched, fetchDocs } from '../../store/workspaceSlice';
 import { SchemaLoading, WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 import getShema from '../../utils/getSchema';
+import WorkspaceCodemirror from '../../components/WorkspaceEditor/WorkspaceCodeMirror';
+import { responseCodemirrorText } from '../../store/workspaceEditorSlice';
 
 enum Layout {
   horizontal = 'horizontal',
@@ -19,6 +21,8 @@ function Workspace() {
   const dispatch = useDispatch();
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const isDocsPanelVisible = useSelector(docsPanelVisible);
+  const workspaceEditorRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const [workspaceEditorHeight, setWorkspaceEditorHeight] = useState(0);
 
   useEffect(() => {
     getShema()
@@ -29,6 +33,7 @@ function Workspace() {
         console.log('err=', err);
       })
       .finally(() => dispatch(fetchDocs(true)));
+    setWorkspaceEditorHeight(workspaceEditorRef.current.clientHeight);
   }, [setSchema, dispatch]);
 
   return (
@@ -61,10 +66,20 @@ function Workspace() {
           <SplitterPanel size={200 / 3}>
             <Splitter className="workspace__splitter-2" layout={layout}>
               <SplitterPanel size={layout === Layout.horizontal ? 50 : 200 / 3}>
-                <WorkspaceEditor />
+                <div ref={workspaceEditorRef} style={{ height: '100%' }}>
+                  <WorkspaceEditor {...{ maxHeight: `${workspaceEditorHeight}px` }} />
+                </div>
               </SplitterPanel>
               <SplitterPanel size={layout === Layout.horizontal ? 50 : 100 / 3}>
-                results
+                <WorkspaceCodemirror
+                  {...{
+                    className: 'workspace__response-codemirror',
+                    value: useSelector(responseCodemirrorText),
+                    style: {
+                      maxHeight: `${workspaceEditorHeight}px`,
+                    },
+                  }}
+                />
               </SplitterPanel>
             </Splitter>
           </SplitterPanel>

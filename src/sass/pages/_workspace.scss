@@ -211,6 +211,17 @@ $border-radius: 5px;
   border: 2px solid $color-primary;
 }
 
+.workspace__response-codemirror {
+  height: 100%;
+  display: flex;
+  overflow: auto;
+}
+
+.workspace__response-codemirror .cm-editor {
+  width: 0;
+  flex-grow: 1;
+}
+
 .p-splitter-horizontal>.p-splitter-gutter>.p-splitter-gutter-handle {
   height: 100%;
 }

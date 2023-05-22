@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import workspaceReducer from './workspaceSlice';
 import workspaceEditorReducer from './workspaceEditorSlice';
+import { countriesApi } from './countriesApiSlice';
 
 const rootReducer = combineReducers({
   workspace: workspaceReducer,
   workspaceEditor: workspaceEditorReducer,
+  [countriesApi.reducerPath]: countriesApi.reducer,
 });
 
 const store = configureStore({
@@ -16,7 +18,7 @@ const store = configureStore({
         ignoredActions: ['workspace/addNestedObj'],
         ignoredPaths: ['workspace.nestedObjsArr'],
       },
-    }),
+    }).concat(countriesApi.middleware),
 });
 
 export default store;
