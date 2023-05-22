@@ -1,4 +1,6 @@
 .schema {
+  height: 100%;
+
   button {
     font-family: 'Istok Web', sans-serif;
     border: none;
@@ -50,6 +52,7 @@
   }
 
   &__container {
+    height: 100%;
     padding: 10px;
   }
 
@@ -103,6 +106,8 @@
     }
 
     &__item {
+      display: flex;
+      flex-wrap: nowrap;
       margin-bottom: 5px;
 
       &:last-child {

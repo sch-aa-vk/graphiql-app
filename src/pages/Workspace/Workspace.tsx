@@ -23,6 +23,7 @@ function Workspace() {
   const isDocsPanelVisible = useSelector(docsPanelVisible);
   const workspaceEditorRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [workspaceEditorHeight, setWorkspaceEditorHeight] = useState(0);
+  const schemaDisplayValue = isDocsPanelVisible ? 'block' : 'none';
 
   useEffect(() => {
     getShema()
@@ -55,11 +56,11 @@ function Workspace() {
           <SplitterPanel
             className="workspace-docs-wrapper"
             size={100 / 3}
-            style={isDocsPanelVisible ? { display: 'block' } : { display: 'none' }}
+            style={{ display: schemaDisplayValue, overflow: 'auto hidden' }}
           >
             {isDocsPanelVisible && (
               <Suspense fallback={<SchemaLoading />}>
-                <LazySchema schema={schema} />
+                <LazySchema schema={schema} maxHeight={workspaceEditorHeight} />
               </Suspense>
             )}
           </SplitterPanel>
