@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   variablesClick,
@@ -24,16 +24,32 @@ import WorkspaceCodemirror from './WorkspaceCodeMirror';
 import WorkspaceEditorTab from './WorkspaceEditorTab';
 import { useSendRequestMutation } from '../../store/countriesApiSlice';
 
-function Editor() {
+interface WorkspaceEditorProps {
+  maxHeight?: string;
+}
+
+function WorkspaceEditor(props: WorkspaceEditorProps) {
+  const { maxHeight } = props;
+  const gaps = 5 * 5;
   const dispatch = useDispatch();
   const currentEditorTabIdVal = useSelector(currentEditorTabId);
   const editorCodemirrorTextVal = useSelector(editorCodemirrorText) || '';
   const variablesTextVal = useSelector(variablesText) || '';
   const sendRequestCountriesApi = useSendRequestMutation()[0];
+  const toolsCodemirrorVisibleVal = useSelector(toolsCodemirrorVisible);
+  const editorTabsRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const editorToolsRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const [editorTabsHeight, setEditorTabsHeight] = useState(0);
+  const [editorToolsHeight, setEditorToolsHeight] = useState(0);
+
+  useEffect(() => {
+    setEditorTabsHeight(editorTabsRef.current.offsetHeight);
+    setEditorToolsHeight(editorToolsRef.current.offsetHeight);
+  }, []);
 
   return (
     <div className="workspace__editor">
-      <div className="workspace__editor-tabs-wrapper">
+      <div className="workspace__editor-tabs-wrapper" ref={editorTabsRef}>
         <div className="workspace__editor-tabs">
           {useSelector(editorTabs).map((el) => (
             <WorkspaceEditorTab
@@ -96,9 +112,14 @@ function Editor() {
             // eslint-disable-next-line @typescript-eslint/comma-dangle
             [dispatch]
           ),
+          style: {
+            maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * ${
+              toolsCodemirrorVisibleVal ? 0.5 : 1
+            })`,
+          },
         }}
       />
-      <div className="workspace__editor-tools">
+      <div className="workspace__editor-tools" ref={editorToolsRef}>
         <WorkspaceButton
           {...{
             text: 'Variables',
@@ -133,7 +154,7 @@ function Editor() {
         {...{
           className: 'workspace__tool-codemirror',
           value: useSelector(toolsCodemirrorText),
-          visible: useSelector(toolsCodemirrorVisible),
+          visible: toolsCodemirrorVisibleVal,
           handleChange: useCallback(
             (value: string) => {
               dispatch(toolsCodemirrorChange(value));
@@ -141,10 +162,17 @@ function Editor() {
             // eslint-disable-next-line @typescript-eslint/comma-dangle
             [dispatch]
           ),
+          style: {
+            maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * 0.5)`,
+          },
         }}
       />
     </div>
   );
 }
 
-export default Editor;
+WorkspaceEditor.defaultProps = {
+  maxHeight: '100%',
+};
+
+export default WorkspaceEditor;
