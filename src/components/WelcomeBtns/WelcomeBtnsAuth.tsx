@@ -6,7 +6,7 @@ function WelcomeBtnsAuth() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/workspace');
+    navigate('/main');
   };
 
   return (

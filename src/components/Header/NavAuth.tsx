@@ -24,7 +24,7 @@ function NavAuth() {
         </NavLink>
       </li>
       <li className="navigation__item">
-        <NavLink to="/workspace" className="navigation__link">
+        <NavLink to="/main" className="navigation__link">
           {t('workLink')}
         </NavLink>
       </li>

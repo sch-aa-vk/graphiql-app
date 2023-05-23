@@ -34,7 +34,7 @@ function SignUp({ active, setActive }: IAuthorization) {
         });
         const token = await auth.currentUser?.getIdToken();
         localStorage.setItem('acces-token', token as string);
-        navigate('/');
+        navigate('/main');
       } catch (err) {
         setMessage((err as Error).message);
       }

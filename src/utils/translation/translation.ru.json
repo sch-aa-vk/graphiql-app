@@ -1,10 +1,10 @@
 {
-  "homeLink": "Главная",
+  "homeLink": "Приветственная",
   "loginLink": "Войти",
   "signupLink": "Зарегистрироваться",
   "signoutLink": "Выход",
   "mainLink": "Перейти на главную страницу",
-  "workLink": "Рабочее пространство",
+  "workLink": "Главная",
   "emailPlaceholder": "Адрес почты",
   "emailWarning": "Введите почту!",
   "emailWarning2" : "Невалидный адрес почты!",

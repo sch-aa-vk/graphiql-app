@@ -25,7 +25,7 @@ function LogIn({ active, setActive }: IAuthorization) {
         await signInWithEmailAndPassword(auth, data.email, data.password);
         const token = await auth.currentUser?.getIdToken();
         localStorage.setItem('acces-token', token as string);
-        navigate('/');
+        navigate('/main');
       } catch (err) {
         setMessage((err as Error).message);
       }
@@ -67,7 +67,7 @@ function LogIn({ active, setActive }: IAuthorization) {
         </button>
       </form>
       {message && <ErrorModal message={message} setMessage={setMessage} />}
-      <Link className="authorization-page__link authorization-page__link-large" to="/reset-email">
+      <Link className="authorization-page__link authorization-page__link-large" to="/reset">
         {t('forgotPassword')}
       </Link>
       <p className="authorization-page__text">
