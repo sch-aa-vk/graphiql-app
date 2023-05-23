@@ -59,10 +59,16 @@ const workspaceEditorSlice = createSlice({
     variablesClick: (state) => {
       state.variablesActive = true;
       state.headersActive = false;
+      if (!state.toolsCodemirrorVisible) {
+        state.toolsCodemirrorVisible = true;
+      }
     },
     headersClick: (state) => {
       state.variablesActive = false;
       state.headersActive = true;
+      if (!state.toolsCodemirrorVisible) {
+        state.toolsCodemirrorVisible = true;
+      }
     },
     togglerClick: (state) => {
       state.toolsCodemirrorVisible = !state.toolsCodemirrorVisible;
