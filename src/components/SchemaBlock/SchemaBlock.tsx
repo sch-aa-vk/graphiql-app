@@ -1,11 +1,11 @@
 import { GraphQLSchema } from 'graphql';
 import Schema from './Schema';
 
-function SchemaBlock(props: { schema: GraphQLSchema | null }) {
-  const { schema } = props;
+function SchemaBlock(props: { schema: GraphQLSchema | null; maxHeight: number }) {
+  const { schema, maxHeight } = props;
 
   return (
-    <div className="schema">
+    <div className="schema" style={{ maxHeight }}>
       {schema ? (
         <Schema schema={schema} />
       ) : (

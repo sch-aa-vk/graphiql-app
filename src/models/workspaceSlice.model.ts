@@ -5,8 +5,7 @@ import {
   GraphQLScalarType,
 } from 'graphql';
 
-// eslint-disable-next-line
-export type TGrphQLField = GraphQLField<any, any>;
+export type TGrphQLField = GraphQLField<undefined, undefined>;
 export type TNestedObjs =
   | GraphQLObjectType
   | TGrphQLField
@@ -16,7 +15,7 @@ export type TNestedObjs =
 export interface Workspace {
   docsPanelVisible: boolean;
   docsFetched: boolean;
-  nestedObjsArr: Array<TNestedObjs>;
+  nestedObjsArr: Array<string[]>;
 }
 
 export interface State {

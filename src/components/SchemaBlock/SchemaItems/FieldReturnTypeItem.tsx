@@ -1,17 +1,17 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLScalarType } from 'graphql';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { addNestedObj } from '../../store/workspaceSlice';
+import { useAppDispatch } from '../../../hooks/storeHooks';
+import { addNestedObj } from '../../../store/workspaceSlice';
 import {
   TGrphQLNonNullObj,
   TGrphQLNonNullScalar,
   TGrphQLOfTypeNonNullObj,
   TGrphQLOfTypeObj,
   TNestedObj,
-} from './schema.model';
-import { TGrphQLField } from '../../models';
+} from '../schema.model';
+import { TGrphQLField } from '../../../models';
 
-function FieldReturnTypeItem(props: { fieldObj: TGrphQLField }) {
-  const { fieldObj } = props;
+function FieldReturnTypeItem(props: { fieldObj: TGrphQLField; keysArr: string[] }) {
+  const { fieldObj, keysArr } = props;
   const dispatch = useAppDispatch();
 
   const fieldObjType = fieldObj.type;
@@ -39,8 +39,17 @@ function FieldReturnTypeItem(props: { fieldObj: TGrphQLField }) {
   const grphQLOfTypeObjName = (nestedObj as GraphQLObjectType | GraphQLScalarType).name;
 
   const handleClickReturnType = () => {
-    if (!nestedObj) return;
-    dispatch(addNestedObj(nestedObj));
+    const nestedArr = [...keysArr, 'type'];
+    if (!isGraphQLObjectType) {
+      nestedArr.push('ofType');
+      if ('ofType' in (fieldObjType.ofType as TGrphQLOfTypeObj)) {
+        nestedArr.push('ofType');
+        if ('ofType' in (fieldObjType.ofType as TGrphQLOfTypeObj).ofType) {
+          nestedArr.push('ofType');
+        }
+      }
+    }
+    dispatch(addNestedObj(nestedArr));
   };
 
   return (

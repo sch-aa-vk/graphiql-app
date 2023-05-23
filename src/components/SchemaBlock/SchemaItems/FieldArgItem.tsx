@@ -1,23 +1,21 @@
-import {
-  GraphQLArgument,
-  GraphQLInputObjectType,
-  GraphQLNonNull,
-  GraphQLScalarType,
-} from 'graphql';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { addNestedObj } from '../../store/workspaceSlice';
-import { IScalarWithName } from './schema.model';
+import { GraphQLArgument, GraphQLNonNull } from 'graphql';
+import { useAppDispatch } from '../../../hooks/storeHooks';
+import { addNestedObj } from '../../../store/workspaceSlice';
+import { IScalarWithName } from '../schema.model';
 
-function FieldArgItem(props: { fieldArg: GraphQLArgument }) {
-  const { fieldArg } = props;
+function FieldArgItem(props: { fieldArg: GraphQLArgument; keysArr: string[] }) {
+  const { fieldArg, keysArr } = props;
   const dispatch = useAppDispatch();
 
   const fieldArgType = fieldArg?.type || null;
   const isFieldTypeCode = !!fieldArgType && 'ofType' in fieldArgType;
 
   const handleClickArg = () => {
-    const nestedObj = isFieldTypeCode ? fieldArgType.ofType : fieldArgType;
-    dispatch(addNestedObj(nestedObj as GraphQLScalarType | GraphQLInputObjectType));
+    const nestedArr = [...keysArr, 'args'];
+    if (isFieldTypeCode) {
+      nestedArr.push('ofType');
+    }
+    dispatch(addNestedObj(nestedArr));
   };
 
   return (

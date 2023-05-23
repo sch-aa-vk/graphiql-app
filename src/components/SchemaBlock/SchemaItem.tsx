@@ -1,10 +1,13 @@
-import { isInputObjectType, isListType, isScalarType } from 'graphql/type';
-import FieldItem from './FieldItem';
-import SchemaField from './SchemaField';
-import { TGrphQLField, TNestedObjs } from '../../models';
+import { GraphQLSchema, isInputObjectType, isListType, isScalarType, isSchema } from 'graphql/type';
+import { FieldItem, SchemaField } from './SchemaItems';
+import { useAppSelector } from '../../hooks/storeHooks';
+import getSchemaItem from './getSchemaItem';
+import { TGrphQLField } from '../../models';
 
-function SchemaItem(props: { graphqlType: TNestedObjs | null }): JSX.Element {
-  const { graphqlType } = props;
+function SchemaItem(props: { schema: GraphQLSchema }): JSX.Element {
+  const { schema } = props;
+  const { nestedObjsArr } = useAppSelector((state) => state.workspace);
+  const graphqlType = getSchemaItem(schema, nestedObjsArr);
 
   if (!graphqlType) return <div />;
 
@@ -30,6 +33,10 @@ function SchemaItem(props: { graphqlType: TNestedObjs | null }): JSX.Element {
         </div>
       </div>
     );
+  }
+
+  if (isSchema(graphqlType)) {
+    return <div />;
   }
 
   const graphqlTypeType = (graphqlType as TGrphQLField).type;

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { State, TNestedObjs, Workspace } from '../models';
+import { State, Workspace } from '../models';
 
 const initialState: Workspace = {
   docsPanelVisible: false,
@@ -18,14 +18,12 @@ const workspaceSlice = createSlice({
     fetchDocs: (state, action: PayloadAction<boolean>) => {
       state.docsFetched = action.payload;
     },
-    addNestedObj: (state, action: PayloadAction<TNestedObjs>) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+    addNestedObj: (state, action: PayloadAction<string[]>) => {
       state.nestedObjsArr.push(action.payload);
     },
     removeLastNestedObj: (state) => {
       const newNestedObjsArr = [...state.nestedObjsArr];
-      newNestedObjsArr.splice(state.nestedObjsArr.length - 1, 1);
+      newNestedObjsArr.splice(newNestedObjsArr.length - 1, 1);
       state.nestedObjsArr = newNestedObjsArr;
     },
   },
