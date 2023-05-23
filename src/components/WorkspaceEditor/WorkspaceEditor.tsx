@@ -17,7 +17,7 @@ import {
   variablesText,
   toolsCodemirrorText,
   editorCodemirrorChange,
-  variablesInvalidJsonOccur,
+  editorErrorOccur,
 } from '../../store/workspaceEditorSlice';
 import WorkspaceButton from './WorkspaceButton';
 import WorkspaceCodemirror from './WorkspaceCodeMirror';
@@ -80,6 +80,10 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
             {...{
               className: 'workspace__editor-tabs-run btn_square',
               handleClick: () => {
+                if ((editorCodemirrorTextVal.match(/query /g) || []).length > 1) {
+                  dispatch(editorErrorOccur('Only one query is allowed per tab'));
+                  return;
+                }
                 try {
                   JSON.parse(variablesTextVal || '{}');
                   sendRequestCountriesApi({
@@ -91,9 +95,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
                   });
                 } catch (error) {
                   dispatch(
-                    variablesInvalidJsonOccur(
-                      `Variables are invalid JSON: ${(error as Error).message}`
-                    )
+                    editorErrorOccur(`Variables are invalid JSON: ${(error as Error).message}`)
                   );
                 }
               },
