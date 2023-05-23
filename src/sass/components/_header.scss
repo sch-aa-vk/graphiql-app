@@ -11,6 +11,11 @@
     padding: 0 10px;
   }
 
+  &__logo {
+    color: $color-font-light;
+    text-decoration: none;
+  }
+
   .navigation {
 
     @include media-tablet {

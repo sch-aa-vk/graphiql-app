@@ -1,5 +1,6 @@
 import { MutableRefObject, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { NavLink } from 'react-router-dom';
 import NavAuth from './NavAuth';
 import NavAnonim from './NavAnonim';
 import useStickyHeader from '../../hooks/useStickyHeader';
@@ -30,10 +31,12 @@ function Header() {
     <header className={headersClassName} ref={headerElemRef}>
       <div className="wrapper">
         <div className="header__container">
-          <h1 className="logo">
-            <span className="logo__text">GraphiQL</span>
-            <span className="logo__text">Countries</span>
-          </h1>
+          <NavLink to="/" className="header__logo">
+            <h1 className="logo">
+              <span className="logo__text">GraphiQL</span>
+              <span className="logo__text">Countries</span>
+            </h1>
+          </NavLink>
           <nav className="header__nav navigation" ref={burgerMenu}>
             <button type="button" className="cross" aria-label="Close" onClick={toggleBurgerMenu}>
               &#215;
