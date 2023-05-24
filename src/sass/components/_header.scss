@@ -11,6 +11,15 @@
     padding: 0 10px;
   }
 
+  &__logo {
+    color: $color-font-light;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-secondary-highlight;
+    }
+  }
+
   .navigation {
 
     @include media-tablet {
