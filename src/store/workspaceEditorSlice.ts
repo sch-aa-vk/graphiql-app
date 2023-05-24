@@ -119,7 +119,7 @@ const workspaceEditorSlice = createSlice({
       const findedIndex = findCurrentTabIndex(state);
       state.editorTabs[findedIndex].editorTabText = action.payload;
     },
-    variablesInvalidJsonOccur: (state, action) => {
+    editorErrorOccur: (state, action) => {
       const findedIndex = findCurrentTabIndex(state);
       state.editorTabs[findedIndex].responseTabText = action.payload;
     },
@@ -156,7 +156,7 @@ export const {
   editorTabSelect,
   editorTabClose,
   editorCodemirrorChange,
-  variablesInvalidJsonOccur,
+  editorErrorOccur,
 } = workspaceEditorSlice.actions;
 
 export const variablesActive = (state: State) => state.workspaceEditor.variablesActive;
