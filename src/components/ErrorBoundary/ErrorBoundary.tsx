@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
-import { Component, ErrorInfo, ReactNode } from 'react';
-import ErrorModal from '../ErrorModal/ErrorModal';
+import { Component, ReactNode } from 'react';
+import { withTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 interface Props {
   children?: ReactNode;
@@ -8,7 +9,6 @@ interface Props {
 
 interface State {
   hasError: boolean;
-  message: string;
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -16,31 +16,24 @@ class ErrorBoundary extends Component<Props, State> {
     super(props);
     this.state = {
       hasError: false,
-      message: '',
     } as State;
   }
 
-  public static getDerivedStateFromError(): State {
-    return { hasError: true, message: '' };
-  }
-
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    this.setState({ message: `Uncaught error: ${error} ${errorInfo}` });
-  }
-
-  private setMessage() {
-    this.setState({ message: '' });
+  public componentDidCatch() {
+    this.setState({
+      hasError: true,
+    });
   }
 
   public render() {
-    const { hasError, message } = this.state;
+    const { hasError } = this.state;
     const { children } = this.props;
     if (hasError) {
-      return <ErrorModal message={message} setMessage={this.setMessage} />;
+      return <p className="error-modal__text error-modal__text-important">{t('errorBoundary')}</p>;
     }
 
     return children;
   }
 }
 
-export default ErrorBoundary;
+export default withTranslation()(ErrorBoundary);

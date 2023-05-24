@@ -23,6 +23,7 @@ import WorkspaceButton from './WorkspaceButton';
 import WorkspaceCodemirror from './WorkspaceCodeMirror';
 import WorkspaceEditorTab from './WorkspaceEditorTab';
 import { useSendRequestMutation } from '../../store/countriesApiSlice';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 interface WorkspaceEditorProps {
   maxHeight?: string;
@@ -49,126 +50,132 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
 
   return (
     <div className="workspace__editor">
-      <div className="workspace__editor-tabs-wrapper" ref={editorTabsRef}>
-        <div className="workspace__editor-tabs">
-          {useSelector(editorTabs).map((el) => (
-            <WorkspaceEditorTab
+      <ErrorBoundary>
+        <div className="workspace__editor-tabs-wrapper" ref={editorTabsRef}>
+          <div className="workspace__editor-tabs">
+            {useSelector(editorTabs).map((el) => (
+              <WorkspaceEditorTab
+                {...{
+                  editorTabId: el.editorTabId,
+                  currentEditorTabId: currentEditorTabIdVal,
+                  handleSelect: (editorTabId: number) => {
+                    dispatch(editorTabSelect(editorTabId));
+                  },
+                  handleClose: (editorTabId: number) => {
+                    dispatch(editorTabClose(editorTabId));
+                  },
+                }}
+                key={el.editorTabId}
+              />
+            ))}
+          </div>
+          <div className="workspace__editor-btns">
+            <WorkspaceButton
               {...{
-                editorTabId: el.editorTabId,
-                currentEditorTabId: currentEditorTabIdVal,
-                handleSelect: (editorTabId: number) => {
-                  dispatch(editorTabSelect(editorTabId));
-                },
-                handleClose: (editorTabId: number) => {
-                  dispatch(editorTabClose(editorTabId));
+                className: 'workspace__editor-tabs-add btn_square',
+                handleClick: () => {
+                  dispatch(addClick());
                 },
               }}
-              key={el.editorTabId}
             />
-          ))}
+            <WorkspaceButton
+              {...{
+                className: 'workspace__editor-tabs-run btn_square',
+                handleClick: () => {
+                  if ((editorCodemirrorTextVal.match(/query /g) || []).length > 1) {
+                    dispatch(editorErrorOccur('Only one query is allowed per tab'));
+                    return;
+                  }
+                  try {
+                    JSON.parse(variablesTextVal || '{}');
+                    sendRequestCountriesApi({
+                      url: '',
+                      body: {
+                        query: editorCodemirrorTextVal,
+                        variables: variablesTextVal || '{}',
+                      },
+                    });
+                  } catch (error) {
+                    dispatch(
+                      editorErrorOccur(`Variables are invalid JSON: ${(error as Error).message}`)
+                    );
+                  }
+                },
+              }}
+            />
+          </div>
         </div>
-        <div className="workspace__editor-btns">
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <WorkspaceCodemirror
+          {...{
+            className: 'workspace__codemirror',
+            value: useSelector(editorCodemirrorText),
+            handleChange: useCallback(
+              (value: string) => {
+                dispatch(editorCodemirrorChange(value));
+              },
+              [dispatch]
+            ),
+            style: {
+              maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * ${
+                toolsCodemirrorVisibleVal ? 0.5 : 1
+              })`,
+            },
+          }}
+        />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <div className="workspace__editor-tools" ref={editorToolsRef}>
           <WorkspaceButton
             {...{
-              className: 'workspace__editor-tabs-add btn_square',
+              text: 'Variables',
+              className: 'workspace__editor-tools-variables btn_rectangle',
+              active: useSelector(variablesActive),
               handleClick: () => {
-                dispatch(addClick());
+                dispatch(variablesClick());
               },
             }}
           />
           <WorkspaceButton
             {...{
-              className: 'workspace__editor-tabs-run btn_square',
+              text: 'Headers',
+              className: 'workspace__editor-tools-headers btn_rectangle',
+              active: useSelector(headersActive),
               handleClick: () => {
-                if ((editorCodemirrorTextVal.match(/query /g) || []).length > 1) {
-                  dispatch(editorErrorOccur('Only one query is allowed per tab'));
-                  return;
-                }
-                try {
-                  JSON.parse(variablesTextVal || '{}');
-                  sendRequestCountriesApi({
-                    url: '',
-                    body: {
-                      query: editorCodemirrorTextVal,
-                      variables: variablesTextVal || '{}',
-                    },
-                  });
-                } catch (error) {
-                  dispatch(
-                    editorErrorOccur(`Variables are invalid JSON: ${(error as Error).message}`)
-                  );
-                }
+                dispatch(headersClick());
+              },
+            }}
+          />
+          <WorkspaceButton
+            {...{
+              className: 'workspace__editor-tools-toggler btn_square',
+              active: useSelector(toolsCodemirrorVisible),
+              handleClick: () => {
+                dispatch(togglerClick());
               },
             }}
           />
         </div>
-      </div>
-      <WorkspaceCodemirror
-        {...{
-          className: 'workspace__codemirror',
-          value: useSelector(editorCodemirrorText),
-          handleChange: useCallback(
-            (value: string) => {
-              dispatch(editorCodemirrorChange(value));
-            },
-            // eslint-disable-next-line @typescript-eslint/comma-dangle
-            [dispatch]
-          ),
-          style: {
-            maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * ${
-              toolsCodemirrorVisibleVal ? 0.5 : 1
-            })`,
-          },
-        }}
-      />
-      <div className="workspace__editor-tools" ref={editorToolsRef}>
-        <WorkspaceButton
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <WorkspaceCodemirror
           {...{
-            text: 'Variables',
-            className: 'workspace__editor-tools-variables btn_rectangle',
-            active: useSelector(variablesActive),
-            handleClick: () => {
-              dispatch(variablesClick());
+            className: 'workspace__tool-codemirror',
+            value: useSelector(toolsCodemirrorText),
+            visible: toolsCodemirrorVisibleVal,
+            handleChange: useCallback(
+              (value: string) => {
+                dispatch(toolsCodemirrorChange(value));
+              },
+              [dispatch]
+            ),
+            style: {
+              maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * 0.5)`,
             },
           }}
         />
-        <WorkspaceButton
-          {...{
-            text: 'Headers',
-            className: 'workspace__editor-tools-headers btn_rectangle',
-            active: useSelector(headersActive),
-            handleClick: () => {
-              dispatch(headersClick());
-            },
-          }}
-        />
-        <WorkspaceButton
-          {...{
-            className: 'workspace__editor-tools-toggler btn_square',
-            active: useSelector(toolsCodemirrorVisible),
-            handleClick: () => {
-              dispatch(togglerClick());
-            },
-          }}
-        />
-      </div>
-      <WorkspaceCodemirror
-        {...{
-          className: 'workspace__tool-codemirror',
-          value: useSelector(toolsCodemirrorText),
-          visible: toolsCodemirrorVisibleVal,
-          handleChange: useCallback(
-            (value: string) => {
-              dispatch(toolsCodemirrorChange(value));
-            },
-            // eslint-disable-next-line @typescript-eslint/comma-dangle
-            [dispatch]
-          ),
-          style: {
-            maxHeight: `calc((${maxHeight} - ${editorTabsHeight}px - ${editorToolsHeight}px - ${gaps}px) * 0.5)`,
-          },
-        }}
-      />
+      </ErrorBoundary>
     </div>
   );
 }
