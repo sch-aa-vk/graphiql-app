@@ -83,6 +83,7 @@ function Workspace() {
                       style: {
                         maxHeight: `${workspaceEditorHeight}px`,
                       },
+                      readOnly: true,
                     }}
                   />
                 </ErrorBoundary>
