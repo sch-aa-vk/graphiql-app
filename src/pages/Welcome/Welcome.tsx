@@ -2,7 +2,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { DeveloperInfo, WelcomeBtnsAnonim, WelcomeBtnsAuth } from '../../components';
 import projectImageObj from '../../assets/images/project.png';
-import rssImageObj from '../../assets/images/rssckool-yellow.jpg';
+import rssImageObj from '../../assets/images/rsschool-blue.jpg';
 import { auth } from '../../utils/firebase';
 
 function Welcome() {
@@ -56,11 +56,11 @@ function Welcome() {
                 {t('learnMore')}
                 <a
                   className="project-info__link"
-                  href="https://rs.school/js/"
+                  href="https://rs.school/react/"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  https://rs.school/js/
+                  https://rs.school/react/
                 </a>
               </div>
               <div className="project-info__image">
