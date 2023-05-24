@@ -53,7 +53,6 @@ function Welcome() {
             <div className="project-info__container">
               <div className="project-info__content">
                 {t('aboutCourseText')}
-                {t('learnMore')}
                 <a
                   className="project-info__link"
                   href="https://rs.school/react/"
