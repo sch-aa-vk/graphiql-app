@@ -61,7 +61,7 @@ export function App() {
               <Route path="/" element={<Welcome />} />
               <Route path="*" element={<Page404 />} />
               {user ? (
-                <Route path="/workspace" element={<Workspace />} />
+                <Route path="/main" element={<Workspace />} />
               ) : (
                 <>
                   <Route path="/auth" element={<Authorization />} />

@@ -8,6 +8,7 @@ import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 import getShema from '../../utils/getSchema';
 import WorkspaceCodemirror from '../../components/WorkspaceEditor/WorkspaceCodeMirror';
 import { responseCodemirrorText } from '../../store/workspaceEditorSlice';
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 
 enum Layout {
   horizontal = 'horizontal',
@@ -74,16 +75,18 @@ function Workspace() {
                 </div>
               </SplitterPanel>
               <SplitterPanel size={layout === Layout.horizontal ? 50 : 100 / 3}>
-                <WorkspaceCodemirror
-                  {...{
-                    className: 'workspace__response-codemirror',
-                    value: useSelector(responseCodemirrorText),
-                    style: {
-                      maxHeight: `${workspaceEditorHeight}px`,
-                    },
-                    readOnly: true,
-                  }}
-                />
+                <ErrorBoundary>
+                  <WorkspaceCodemirror
+                    {...{
+                      className: 'workspace__response-codemirror',
+                      value: useSelector(responseCodemirrorText),
+                      style: {
+                        maxHeight: `${workspaceEditorHeight}px`,
+                      },
+                      readOnly: true,
+                    }}
+                  />
+                </ErrorBoundary>
               </SplitterPanel>
             </Splitter>
           </SplitterPanel>

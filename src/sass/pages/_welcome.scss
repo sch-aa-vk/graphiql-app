@@ -74,8 +74,16 @@
 
       &__content {
         font-family: 'CrimsonText', serif;
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 15px;
+      }
+      
+      &__link {
+        color: $color-secondary-light;
+
+        &:hover {
+          color: $color-secondary-highlight;
+        }
       }
     }
   }
