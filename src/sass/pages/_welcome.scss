@@ -77,6 +77,14 @@
         font-size: 16px;
         margin-bottom: 15px;
       }
+      
+      &__link {
+        color: $color-secondary-light;
+
+        &:hover {
+          color: $color-secondary-highlight;
+        }
+      }
     }
   }
 }

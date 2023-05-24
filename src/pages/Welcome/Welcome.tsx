@@ -51,7 +51,18 @@ function Welcome() {
             </div>
             <h2 className="project-info__title">{t('aboutCourse')}</h2>
             <div className="project-info__container">
-              <div className="project-info__content">{t('aboutCourseText')}</div>
+              <div className="project-info__content">
+                {t('aboutCourseText')}
+                {t('learnMore')}
+                <a
+                  className="project-info__link"
+                  href="https://rs.school/js/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://rs.school/js/
+                </a>
+              </div>
               <div className="project-info__image">
                 <img
                   src={rssImageObj}

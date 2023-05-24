@@ -62,14 +62,14 @@ function ResetPassword() {
           <p className="authorization-page__text">
             {t('resetText2')}
             <Link to="/auth" className="authorization-page__link">
-              {t('loginLink')}
+              {t('resetText3')}
             </Link>
             {t('registerText3')}
           </p>
         )}
         <p className="authorization-page__text">
           {t('registerText')}
-          <Link className="authorization-page__link" to="/">
+          <Link className="authorization-page__link" to="/auth">
             {t('registerText2')}
           </Link>
           {t('registerText3')}
