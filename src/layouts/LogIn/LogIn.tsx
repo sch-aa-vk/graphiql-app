@@ -7,6 +7,7 @@ import { IAuthorization } from '../../utils/types';
 import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { auth } from '../../utils/firebase';
 import { ErrorModal } from '../../components';
+import LoadingIcon from '../../assets/icons/LoadingIcon';
 
 function LogIn({ active, setActive }: IAuthorization) {
   const {
@@ -16,18 +17,22 @@ function LogIn({ active, setActive }: IAuthorization) {
     formState: { errors },
   } = useForm();
   const [message, setMessage] = useState('');
+  const [pending, setPending] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const handleLogin = (data: FieldValues) => {
     (async () => {
       try {
+        setPending(true);
         await signInWithEmailAndPassword(auth, data.email, data.password);
         const token = await auth.currentUser?.getIdToken();
         localStorage.setItem('acces-token', token as string);
         navigate('/main');
       } catch (err) {
         setMessage((err as Error).message);
+      } finally {
+        setPending(false);
       }
     })();
   };
@@ -62,9 +67,13 @@ function LogIn({ active, setActive }: IAuthorization) {
           }}
           message={errors.password?.message as string}
         />
-        <button className="authorization-page__form-button" type="submit">
-          {t('loginLink')}
-        </button>
+        {pending ? (
+          <LoadingIcon />
+        ) : (
+          <button className="authorization-page__form-button" type="submit">
+            {t('loginLink')}
+          </button>
+        )}
       </form>
       {message && <ErrorModal message={message} setMessage={setMessage} />}
       <Link className="authorization-page__link authorization-page__link-large" to="/reset">
