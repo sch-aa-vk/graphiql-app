@@ -49,7 +49,10 @@ function SignUp({ active, setActive }: IAuthorization) {
   return (
     <div className="authorization-page__layout">
       <h2 className="authorization-page__title">{t('signupLink')}</h2>
-      <form className="authorization-page__form" onSubmit={handleSubmit(handleRegister)}>
+      <form
+        className={`authorization-page__form ${pending ? 'authorization-page__form-pending' : ''}`}
+        onSubmit={handleSubmit(handleRegister)}
+      >
         <AuthorizationInput
           type="name"
           placeholder={t('namePlaceholder')}

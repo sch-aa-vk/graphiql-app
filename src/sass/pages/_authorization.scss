@@ -97,6 +97,10 @@
     width: 25px;
     height: 25px;
   }
+
+  &-pending {
+    pointer-events: none;
+  }
 }
 
 .authorization-page__form-button {

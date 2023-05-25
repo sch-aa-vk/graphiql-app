@@ -42,7 +42,12 @@ function ResetPassword() {
           <img className="authorization-page__decoration-image" src={mail} alt="" />
         </div>
         <p className="authorization-page__title">{t('resetText')}</p>
-        <form className="authorization-page__form" onSubmit={handleSubmit(handleReset)}>
+        <form
+          className={`authorization-page__form ${
+            pending ? 'authorization-page__form-pending' : ''
+          }`}
+          onSubmit={handleSubmit(handleReset)}
+        >
           <AuthorizationInput
             type="email"
             placeholder={t('emailPlaceholder')}
