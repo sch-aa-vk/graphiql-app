@@ -1,4 +1,5 @@
 /* eslint-disable react/require-default-props */
+import { useRef } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IAuthorizationInput {
@@ -16,6 +17,13 @@ function AuthorizationInput({
   onKeyUp,
   message,
 }: IAuthorizationInput) {
+  const isPassword = type === 'password';
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handlePasswordVisibility = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    inputRef.current!.type = e.currentTarget.checked ? 'text' : 'password';
+  };
+
   return (
     <div className="authorization-input">
       <input
@@ -27,7 +35,19 @@ function AuthorizationInput({
         autoComplete="off"
         {...register}
         onKeyUp={onKeyUp}
+        ref={inputRef}
       />
+      {isPassword && (
+        <label htmlFor="checkbox" className="authorization-page__label">
+          <input
+            id="checkbox"
+            type="checkbox"
+            className="authorization-page__checkbox"
+            onClick={handlePasswordVisibility}
+          />
+          <p className="authorization-page__label-text">Make password visible</p>
+        </label>
+      )}
       {message && <small className="authorization-input__error">{message as string}</small>}
     </div>
   );
