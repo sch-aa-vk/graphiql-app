@@ -10,10 +10,10 @@ function LanguageSelect() {
 
   return (
     <select className="language-select" onChange={handleLanguageChange}>
-      <option className="language-select__option" value="en">
+      <option className="language-select__option" value="en" selected={i18n.language === 'en'}>
         EN
       </option>
-      <option className="language-select__option" value="ru">
+      <option className="language-select__option" value="ru" selected={i18n.language === 'ru'}>
         RU
       </option>
     </select>
