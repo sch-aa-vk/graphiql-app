@@ -9,11 +9,15 @@ function LanguageSelect() {
   };
 
   return (
-    <select className="language-select" onChange={handleLanguageChange}>
-      <option className="language-select__option" value="en" selected={i18n.language === 'en'}>
+    <select
+      className="language-select"
+      onChange={handleLanguageChange}
+      defaultValue={i18n.language === 'en' ? 'en' : 'ru'}
+    >
+      <option className="language-select__option" value="en">
         EN
       </option>
-      <option className="language-select__option" value="ru" selected={i18n.language === 'ru'}>
+      <option className="language-select__option" value="ru">
         RU
       </option>
     </select>
