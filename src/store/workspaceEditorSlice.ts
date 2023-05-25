@@ -36,9 +36,34 @@ const initialState: WorkspaceEditor = {
   editorTabs: [
     {
       editorTabId: firstEditorTabId,
-      editorTabText: '',
+      editorTabText: `# Welcome to GraphiQL Countries App!
+#
+# This is a playground/IDE for writing, validating, and
+# testing the Countries GraphQL API
+#
+# Type queries in this part of the screen and you will see the result 
+# of request or an error message if something went wrong. 
+# You can see the documentation describing the API scheme 
+# by clicking on the icon in the upper left corner.
+#
+# P.S: GraphQL queries typically start with a "{" character.
+# Lines that starts with a # are ignored.
+#
+# An example of request:
+
+query ExampleQuery {
+  continents {
+    code
+  }
+  countries {
+    code
+  }
+  languages {
+    code
+  }
+}`,
       variablesTabText: '',
-      headersTabText: '',
+      headersTabText: '# Headers window is temporarily not working',
       responseTabText: '',
     },
   ],
