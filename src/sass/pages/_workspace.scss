@@ -225,3 +225,7 @@ $border-radius: 5px;
 .p-splitter-horizontal>.p-splitter-gutter>.p-splitter-gutter-handle {
   height: 100%;
 }
+
+.p-splitter-vertical>.p-splitter-gutter>.p-splitter-gutter-handle {
+  width: 100%;
+}

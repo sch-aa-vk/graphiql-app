@@ -19,6 +19,7 @@ const LazySchema = lazy(() => import('../../components/SchemaBlock/SchemaBlock')
 
 function Workspace() {
   const layout = useRef(window.innerWidth).current > 480 ? Layout.horizontal : Layout.vertical;
+  const isVerticalLayout = layout === Layout.vertical;
   const dispatch = useDispatch();
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   const isDocsPanelVisible = useSelector(docsPanelVisible);
@@ -35,9 +36,7 @@ function Workspace() {
         throw new Error((err as Error).message);
       })
       .finally(() => dispatch(fetchDocs(true)));
-    setWorkspaceEditorHeight(
-      Layout.horizontal === layout ? workspaceEditorRef.current.clientHeight : 1000
-    );
+    setWorkspaceEditorHeight(workspaceEditorRef.current.clientHeight);
   }, [setSchema, dispatch, layout]);
 
   return (
@@ -59,33 +58,41 @@ function Workspace() {
           <SplitterPanel
             className="workspace-docs-wrapper"
             size={100 / 3}
-            style={{ display: schemaDisplayValue, overflow: 'auto hidden' }}
+            style={{ display: schemaDisplayValue, overflow: 'auto' }}
           >
             {isDocsPanelVisible && (
               <Suspense fallback={<SchemaLoading />}>
-                <LazySchema schema={schema} maxHeight={workspaceEditorHeight} />
+                <LazySchema schema={schema} maxHeight={workspaceEditorHeight - 20} />
               </Suspense>
             )}
           </SplitterPanel>
           <SplitterPanel size={200 / 3}>
             <Splitter className="workspace__splitter-2" layout={layout}>
-              <SplitterPanel size={layout === Layout.horizontal ? 50 : 200 / 3}>
-                <div ref={workspaceEditorRef} style={{ height: '100%' }}>
-                  <WorkspaceEditor {...{ maxHeight: `${workspaceEditorHeight}px` }} />
-                </div>
+              <SplitterPanel size={isVerticalLayout ? (isDocsPanelVisible ? 100 : 200) / 3 : 50}>
+                <WorkspaceEditor
+                  {...{
+                    maxHeight: `${
+                      isVerticalLayout && !isDocsPanelVisible
+                        ? workspaceEditorHeight * 2
+                        : workspaceEditorHeight
+                    }px`,
+                  }}
+                />
               </SplitterPanel>
-              <SplitterPanel size={layout === Layout.horizontal ? 50 : 100 / 3}>
+              <SplitterPanel size={isVerticalLayout ? 100 / 3 : 50}>
                 <ErrorBoundary>
-                  <WorkspaceCodemirror
-                    {...{
-                      className: 'workspace__response-codemirror',
-                      value: useSelector(responseCodemirrorText),
-                      style: {
-                        maxHeight: `${workspaceEditorHeight}px`,
-                      },
-                      readOnly: true,
-                    }}
-                  />
+                  <div ref={workspaceEditorRef} style={{ height: '100%' }}>
+                    <WorkspaceCodemirror
+                      {...{
+                        className: 'workspace__response-codemirror',
+                        value: useSelector(responseCodemirrorText),
+                        style: {
+                          maxHeight: `${workspaceEditorHeight}px`,
+                        },
+                        readOnly: true,
+                      }}
+                    />
+                  </div>
                 </ErrorBoundary>
               </SplitterPanel>
             </Splitter>

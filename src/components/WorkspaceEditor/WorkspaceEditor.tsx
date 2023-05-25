@@ -82,17 +82,19 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               {...{
                 className: 'workspace__editor-tabs-run btn_square',
                 handleClick: () => {
-                  if ((editorCodemirrorTextVal.match(/query /g) || []).length > 1) {
+                  const editorCodemirrorTextStr = editorCodemirrorTextVal.trim();
+                  const variablesTextStr = variablesTextVal.trim();
+                  if ((editorCodemirrorTextStr.match(/query /g) || []).length > 1) {
                     dispatch(editorErrorOccur('Only one query is allowed per tab'));
                     return;
                   }
                   try {
-                    JSON.parse(variablesTextVal || '{}');
+                    JSON.parse(variablesTextStr || '{}');
                     sendRequestCountriesApi({
                       url: '',
                       body: {
-                        query: editorCodemirrorTextVal,
-                        variables: variablesTextVal || '{}',
+                        query: editorCodemirrorTextStr,
+                        variables: variablesTextStr || '{}',
                       },
                     });
                   } catch (error) {
