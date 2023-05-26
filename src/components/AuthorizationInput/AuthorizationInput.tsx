@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 interface IAuthorizationInput {
   placeholder: string;
@@ -19,6 +20,7 @@ function AuthorizationInput({
 }: IAuthorizationInput) {
   const isPassword = type === 'password';
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   const handlePasswordVisibility = () => {
     setIsVisible(!isVisible);
@@ -44,7 +46,7 @@ function AuthorizationInput({
             className="authorization-page__checkbox"
             onClick={handlePasswordVisibility}
           />
-          <p className="authorization-page__label-text">Make password visible</p>
+          <p className="authorization-page__label-text">{t('visiblePassword')}</p>
         </label>
       )}
       {message && <small className="authorization-input__error">{message as string}</small>}
