@@ -148,7 +148,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(variablesClick());
               },
-              id: 'variables_window',
+              id: 'variables_editor',
             }}
           />
           <WorkspaceButton
@@ -159,7 +159,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(headersClick());
               },
-              id: 'headers_window',
+              id: 'headers_editor',
             }}
           />
           <WorkspaceButton
@@ -169,7 +169,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(togglerClick());
               },
-              id: 'open_headers_and_variables_section',
+              id: 'open_editor_tools',
             }}
           />
         </div>
