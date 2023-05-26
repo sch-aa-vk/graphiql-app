@@ -5,3 +5,7 @@
 @mixin media-mobile {
   @media (max-width: $mobile-width) { @content }
 };
+
+@mixin media-480 {
+  @media (max-width: $width-480) { @content }
+};
