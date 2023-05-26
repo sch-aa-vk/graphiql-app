@@ -63,6 +63,11 @@ $border-radius: 5px;
   height: 100%;
   row-gap: 5px;
   padding: 5px;
+
+  @include media-480 {
+    border-top: $border;
+    border-bottom: $border;
+  }
 }
 
 .workspace__editor-tabs-wrapper {
@@ -246,4 +251,10 @@ $border-radius: 5px;
 
 .custom-tooltip.p-tooltip .p-tooltip-arrow {
   border-right-color: $color-secondary-highlight;
+}
+
+.p-splitter-gutter {
+  @include media-480 {
+    display: none;
+  }
 }

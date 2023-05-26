@@ -38,7 +38,7 @@ function Workspace() {
       })
       .finally(() => dispatch(fetchDocs(true)));
     setWorkspaceEditorHeight(workspaceEditorRef.current.clientHeight);
-  }, [setSchema, dispatch, layout]);
+  }, [setSchema, dispatch]);
 
   return (
     <div className="main__wrapper">
