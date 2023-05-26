@@ -52,6 +52,7 @@ function Workspace() {
                 dispatch(docsClick());
               },
               disabled: !useSelector(docsFetched),
+              id: 'open_docs',
             }}
           />
         </aside>

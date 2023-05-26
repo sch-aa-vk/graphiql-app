@@ -78,6 +78,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
                 handleClick: () => {
                   dispatch(addClick());
                 },
+                id: 'add_new_window',
               }}
             />
             {pending ? (
@@ -111,6 +112,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
                       setPending(false);
                     }
                   },
+                  id: 'send_query',
                 }}
               />
             )}
@@ -146,6 +148,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(variablesClick());
               },
+              id: 'variables_window',
             }}
           />
           <WorkspaceButton
@@ -156,6 +159,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(headersClick());
               },
+              id: 'headers_window',
             }}
           />
           <WorkspaceButton
@@ -165,6 +169,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
               handleClick: () => {
                 dispatch(togglerClick());
               },
+              id: 'open_headers_and_variables_section',
             }}
           />
         </div>

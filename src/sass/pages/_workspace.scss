@@ -237,3 +237,13 @@ $border-radius: 5px;
 .p-splitter-vertical>.p-splitter-gutter>.p-splitter-gutter-handle {
   width: 100%;
 }
+
+.custom-tooltip.p-tooltip .p-tooltip-text {
+  background-color: $color-secondary-highlight;
+  color: $color-font-light;
+  padding: 5px;
+}
+
+.custom-tooltip.p-tooltip .p-tooltip-arrow {
+  border-right-color: $color-secondary-highlight;
+}
