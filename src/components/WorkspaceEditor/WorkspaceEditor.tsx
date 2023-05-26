@@ -24,6 +24,7 @@ import WorkspaceCodemirror from './WorkspaceCodeMirror';
 import WorkspaceEditorTab from './WorkspaceEditorTab';
 import { useSendRequestMutation } from '../../store/countriesApiSlice';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import LoadingIcon from '../../assets/icons/LoadingIcon';
 
 interface WorkspaceEditorProps {
   maxHeight?: string;
@@ -42,6 +43,7 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
   const editorToolsRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [editorTabsHeight, setEditorTabsHeight] = useState(0);
   const [editorToolsHeight, setEditorToolsHeight] = useState(0);
+  const [pending, setPending] = useState(false);
 
   useEffect(() => {
     setEditorTabsHeight(editorTabsRef.current.offsetHeight);
@@ -78,33 +80,40 @@ function WorkspaceEditor(props: WorkspaceEditorProps) {
                 },
               }}
             />
-            <WorkspaceButton
-              {...{
-                className: 'workspace__editor-tabs-run btn_square',
-                handleClick: () => {
-                  const editorCodemirrorTextStr = editorCodemirrorTextVal.trim();
-                  const variablesTextStr = variablesTextVal.trim();
-                  if ((editorCodemirrorTextStr.match(/query /g) || []).length > 1) {
-                    dispatch(editorErrorOccur('Only one query is allowed per tab'));
-                    return;
-                  }
-                  try {
-                    JSON.parse(variablesTextStr || '{}');
-                    sendRequestCountriesApi({
-                      url: '',
-                      body: {
-                        query: editorCodemirrorTextStr,
-                        variables: variablesTextStr || '{}',
-                      },
-                    });
-                  } catch (error) {
-                    dispatch(
-                      editorErrorOccur(`Variables are invalid JSON: ${(error as Error).message}`)
-                    );
-                  }
-                },
-              }}
-            />
+            {pending ? (
+              <LoadingIcon />
+            ) : (
+              <WorkspaceButton
+                {...{
+                  className: 'workspace__editor-tabs-run btn_square',
+                  handleClick: async () => {
+                    const editorCodemirrorTextStr = editorCodemirrorTextVal.trim();
+                    const variablesTextStr = variablesTextVal.trim();
+                    if ((editorCodemirrorTextStr.match(/query /g) || []).length > 1) {
+                      dispatch(editorErrorOccur('Only one query is allowed per tab'));
+                      return;
+                    }
+                    try {
+                      setPending(true);
+                      JSON.parse(variablesTextStr || '{}');
+                      await sendRequestCountriesApi({
+                        url: '',
+                        body: {
+                          query: editorCodemirrorTextStr,
+                          variables: variablesTextStr || '{}',
+                        },
+                      });
+                    } catch (error) {
+                      dispatch(
+                        editorErrorOccur(`Variables are invalid JSON: ${(error as Error).message}`)
+                      );
+                    } finally {
+                      setPending(false);
+                    }
+                  },
+                }}
+              />
+            )}
           </div>
         </div>
       </ErrorBoundary>

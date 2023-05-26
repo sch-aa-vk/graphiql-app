@@ -1,6 +1,7 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { CSSProperties } from 'react';
 import { langs } from '@uiw/codemirror-extensions-langs';
+import { bbeditInit } from '@uiw/codemirror-theme-bbedit';
 
 interface WorkspaceCodemirrorProps {
   className?: string;
@@ -27,6 +28,11 @@ function WorkspaceCodemirror(props: WorkspaceCodemirrorProps) {
       style={style}
       readOnly={readOnly}
       extensions={[langs.json()]}
+      theme={bbeditInit({
+        settings: {
+          fontFamily: 'Istok Web, sans-serif',
+        },
+      })}
     />
   );
 }
