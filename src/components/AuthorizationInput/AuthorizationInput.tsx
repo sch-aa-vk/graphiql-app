@@ -1,5 +1,7 @@
 /* eslint-disable react/require-default-props */
+import { useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 interface IAuthorizationInput {
   placeholder: string;
@@ -16,10 +18,18 @@ function AuthorizationInput({
   onKeyUp,
   message,
 }: IAuthorizationInput) {
+  const isPassword = type === 'password';
+  const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
+
+  const handlePasswordVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <div className="authorization-input">
       <input
-        type={type}
+        type={(isPassword && isVisible && 'text') || type}
         className={`authorization-input__input ${
           message ? 'authorization-input__input-error' : ''
         }`}
@@ -28,6 +38,17 @@ function AuthorizationInput({
         {...register}
         onKeyUp={onKeyUp}
       />
+      {isPassword && (
+        <label htmlFor="checkbox" className="authorization-page__label">
+          <input
+            id="checkbox"
+            type="checkbox"
+            className="authorization-page__checkbox"
+            onClick={handlePasswordVisibility}
+          />
+          <p className="authorization-page__label-text">{t('visiblePassword')}</p>
+        </label>
+      )}
       {message && <small className="authorization-input__error">{message as string}</small>}
     </div>
   );

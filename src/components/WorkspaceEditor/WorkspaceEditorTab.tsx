@@ -31,9 +31,12 @@ function WorkspaceEditorTab(props: WorkspaceEditorTabProps) {
         {...{
           text: `# ${editorTabId}`,
           className: 'workspace__editor-tab-select btn_rectangle',
+          id: `window_number_${editorTabId}`,
         }}
       />
-      <WorkspaceButton {...{ className: 'workspace__editor-tab_close' }} />
+      <WorkspaceButton
+        {...{ className: 'workspace__editor-tab_close', id: `close_window_${editorTabId}` }}
+      />
     </div>
   );
 }

@@ -13,6 +13,7 @@
   "passwordWarning2": "Password should contain at least one number and one special character",
   "passwordWarning3": "Password must be more than 8 characters",
   "passwordWarning4": "Password must be less than 20 characters",
+  "visiblePassword": "make the password visible",
   "forgotPassword": "Forgot Password",
   "registerText": "Don't have an account?",
   "registerText2": "Register",

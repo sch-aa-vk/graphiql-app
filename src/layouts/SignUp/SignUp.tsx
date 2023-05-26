@@ -8,6 +8,7 @@ import { auth, db } from '../../utils/firebase';
 import { IAuthorization } from '../../utils/types';
 import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
+import LoadingIcon from '../../assets/icons/LoadingIcon';
 
 function SignUp({ active, setActive }: IAuthorization) {
   const {
@@ -17,6 +18,7 @@ function SignUp({ active, setActive }: IAuthorization) {
     formState: { errors },
   } = useForm();
   const [message, setMessage] = useState('');
+  const [pending, setPending] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -24,6 +26,7 @@ function SignUp({ active, setActive }: IAuthorization) {
     const { name, email, password } = data;
     (async () => {
       try {
+        setPending(true);
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const { user } = res;
         await addDoc(collection(db, 'users'), {
@@ -37,6 +40,8 @@ function SignUp({ active, setActive }: IAuthorization) {
         navigate('/main');
       } catch (err) {
         setMessage((err as Error).message);
+      } finally {
+        setPending(false);
       }
     })();
   };
@@ -44,7 +49,10 @@ function SignUp({ active, setActive }: IAuthorization) {
   return (
     <div className="authorization-page__layout">
       <h2 className="authorization-page__title">{t('signupLink')}</h2>
-      <form className="authorization-page__form" onSubmit={handleSubmit(handleRegister)}>
+      <form
+        className={`authorization-page__form ${pending ? 'authorization-page__form-pending' : ''}`}
+        onSubmit={handleSubmit(handleRegister)}
+      >
         <AuthorizationInput
           type="name"
           placeholder={t('namePlaceholder')}
@@ -81,7 +89,7 @@ function SignUp({ active, setActive }: IAuthorization) {
           register={register('password', {
             required: `* ${t('passwordWarning')}`,
             pattern: {
-              value: /^(?=.*[0-9])(?=.*[!@#$%^&*-_+=~`,.]])[a-zA-Z0-9!@#$%^&*-_+=~`,.]{6,16}$/,
+              value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-_+=`~])[A-Za-z\d@$!%*#?&-_+=`~]{8,}$/i,
               message: `* ${t('passwordWarning2')}`,
             },
             minLength: {
@@ -98,9 +106,13 @@ function SignUp({ active, setActive }: IAuthorization) {
           }}
           message={errors.password?.message as string}
         />
-        <button className="authorization-page__form-button" type="submit">
-          {t('signupLink')}
-        </button>
+        {pending ? (
+          <LoadingIcon />
+        ) : (
+          <button className="authorization-page__form-button" type="submit">
+            {t('signupLink')}
+          </button>
+        )}
       </form>
       {message && <ErrorModal message={message} setMessage={setMessage} />}
       <p className="authorization-page__text">

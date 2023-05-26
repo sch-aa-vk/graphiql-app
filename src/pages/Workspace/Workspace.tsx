@@ -3,7 +3,7 @@ import { MutableRefObject, Suspense, lazy, useEffect, useRef, useState } from 'r
 import { GraphQLSchema } from 'graphql';
 import { useDispatch, useSelector } from 'react-redux';
 import { docsClick, docsPanelVisible, docsFetched, fetchDocs } from '../../store/workspaceSlice';
-import { SchemaLoading, WorkspaceEditor } from '../../components';
+import { ErrorModal, SchemaLoading, WorkspaceEditor } from '../../components';
 import WorkspaceButton from '../../components/WorkspaceEditor/WorkspaceButton';
 import getShema from '../../utils/getSchema';
 import WorkspaceCodemirror from '../../components/WorkspaceEditor/WorkspaceCodeMirror';
@@ -22,6 +22,7 @@ function Workspace() {
   const isVerticalLayout = layout === Layout.vertical;
   const dispatch = useDispatch();
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const isDocsPanelVisible = useSelector(docsPanelVisible);
   const workspaceEditorRef = useRef() as MutableRefObject<HTMLDivElement>;
   const [workspaceEditorHeight, setWorkspaceEditorHeight] = useState(0);
@@ -33,7 +34,7 @@ function Workspace() {
         setSchema(grphQLSchema);
       })
       .catch((err) => {
-        throw new Error((err as Error).message);
+        setErrorMessage((err as Error).message);
       })
       .finally(() => dispatch(fetchDocs(true)));
     setWorkspaceEditorHeight(workspaceEditorRef.current.clientHeight);
@@ -51,6 +52,7 @@ function Workspace() {
                 dispatch(docsClick());
               },
               disabled: !useSelector(docsFetched),
+              id: 'open_docs',
             }}
           />
         </aside>
@@ -99,6 +101,7 @@ function Workspace() {
           </SplitterPanel>
         </Splitter>
       </section>
+      {errorMessage && <ErrorModal message={errorMessage} setMessage={setErrorMessage} />}
     </div>
   );
 }

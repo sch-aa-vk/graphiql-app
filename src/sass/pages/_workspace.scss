@@ -116,6 +116,14 @@ $border-radius: 5px;
 .workspace__editor-btns {
   display: flex;
   justify-content: space-between;
+
+  > .loading-icon {
+    position: relative;
+    top: 3px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .workspace__editor-tabs-add {
@@ -228,4 +236,14 @@ $border-radius: 5px;
 
 .p-splitter-vertical>.p-splitter-gutter>.p-splitter-gutter-handle {
   width: 100%;
+}
+
+.custom-tooltip.p-tooltip .p-tooltip-text {
+  background-color: $color-secondary-highlight;
+  color: $color-font-light;
+  padding: 5px;
+}
+
+.custom-tooltip.p-tooltip .p-tooltip-arrow {
+  border-right-color: $color-secondary-highlight;
 }

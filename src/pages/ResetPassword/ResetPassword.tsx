@@ -7,6 +7,7 @@ import { auth } from '../../utils/firebase';
 import AuthorizationInput from '../../components/AuthorizationInput/AuthorizationInput';
 import { ErrorModal } from '../../components';
 import mail from '../../assets/icons/mail-reset.svg';
+import LoadingIcon from '../../assets/icons/LoadingIcon';
 
 function ResetPassword() {
   const {
@@ -16,16 +17,20 @@ function ResetPassword() {
     formState: { errors },
   } = useForm();
   const [message, setMessage] = useState('');
+  const [pending, setPending] = useState(false);
   const [success, setSuccess] = useState(false);
   const { t } = useTranslation();
 
   const handleReset = (data: FieldValues) => {
     (async () => {
       try {
+        setPending(true);
         await sendPasswordResetEmail(auth, data.email);
         setSuccess(true);
       } catch (err) {
         setMessage((err as Error).message);
+      } finally {
+        setPending(false);
       }
     })();
   };
@@ -37,7 +42,12 @@ function ResetPassword() {
           <img className="authorization-page__decoration-image" src={mail} alt="" />
         </div>
         <p className="authorization-page__title">{t('resetText')}</p>
-        <form className="authorization-page__form" onSubmit={handleSubmit(handleReset)}>
+        <form
+          className={`authorization-page__form ${
+            pending ? 'authorization-page__form-pending' : ''
+          }`}
+          onSubmit={handleSubmit(handleReset)}
+        >
           <AuthorizationInput
             type="email"
             placeholder={t('emailPlaceholder')}
@@ -53,9 +63,13 @@ function ResetPassword() {
             }}
             message={errors.email?.message as string}
           />
-          <button className="authorization-page__form-button" type="submit">
-            {t('resetText')}
-          </button>
+          {pending ? (
+            <LoadingIcon />
+          ) : (
+            <button className="authorization-page__form-button" type="submit">
+              {t('resetText')}
+            </button>
+          )}
         </form>
         {message && <ErrorModal message={message} setMessage={setMessage} />}
         {success && (

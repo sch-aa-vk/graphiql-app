@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { MutableRefObject, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
@@ -41,7 +42,11 @@ function Header() {
             <button type="button" className="cross" aria-label="Close" onClick={toggleBurgerMenu}>
               &#215;
             </button>
-            {user ? <NavAuth /> : <NavAnonim />}
+            {user ? (
+              <NavAuth onClick={toggleBurgerMenu} />
+            ) : (
+              <NavAnonim onClick={toggleBurgerMenu} />
+            )}
           </nav>
           <button type="button" aria-label="Open" className="burger" onClick={toggleBurgerMenu}>
             <div className="burger__content">
