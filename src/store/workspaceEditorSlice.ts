@@ -63,8 +63,8 @@ query ExampleQuery {
   }
 }`,
       variablesTabText: '',
-      headersTabText: '# Headers window is temporarily not working',
-      responseTabText: '',
+      headersTabText: '# Headers editor is temporarily not working',
+      responseTabText: '# This tab is read-only',
     },
   ],
 };
