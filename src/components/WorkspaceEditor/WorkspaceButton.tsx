@@ -1,4 +1,5 @@
 import { Tooltip } from 'primereact/tooltip';
+import { useTranslation } from 'react-i18next';
 
 interface WorkspaceButtonProps {
   text?: string;
@@ -11,7 +12,9 @@ interface WorkspaceButtonProps {
 
 function WorkspaceButton(props: WorkspaceButtonProps) {
   const { text, className, active, handleClick, disabled, id } = props;
-  const tooltip = id.split('_').join(' ');
+  const { t } = useTranslation();
+  const tooltip = !active ? id : id.replace('open', 'close');
+  const tooltipText = t(`${tooltip}`);
 
   return (
     <>
@@ -20,7 +23,7 @@ function WorkspaceButton(props: WorkspaceButtonProps) {
         type="button"
         onClick={handleClick}
         disabled={disabled}
-        data-pr-tooltip={!active ? tooltip : tooltip.replace('open', 'close')}
+        data-pr-tooltip={tooltipText}
       >
         {text}
       </button>

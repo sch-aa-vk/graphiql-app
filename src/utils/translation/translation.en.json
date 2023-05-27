@@ -36,5 +36,15 @@
   "yevheniiaDescription": "From Kharkiv, has a higher financial education, worked for four years in the accounting department of the bank. A student of RS School since the summer of 2022 and graduated from the 0, 1 and 2 stages of the JS course. In this project, implemented a header, a footer, a page about us, a block with documentation, getting an API schema, basic styles.",
   "aboutProjectText": "This application is developed on React, TypeScript, Redux using additional libraries and resources such as Redux Toolkit, Firebase, i18next, Codemirror and PrimeReact, and is a playground/IDE for querying the Countries GraphQL API. It is localized into two languages and fully adaptive (up to 320 pixels), with responsive layout. In order to use the application, you need to log in and go to the main page. It consists of several parts, such as a documentation block with a description of the API schema, a block for creating a request with the ability to open several working tabs, a block for variables and headers, and finally a block for displaying the result in the JSON format.",
   "aboutCourseText": "The React course from Rolling Scopes School is a comprehensive program that provides the materials and tasks necessary to master this framework. Students study concepts such as components, state management and lifecycle methods, as well as advanced topics: React Router, Redux and hooks. The curriculum combines theory and practice with interesting tasks and a unique verification system. By the end of the course, students have enough experience in developing dynamic and scalable web applications using React to work as a junior developer. Learn more at course page ",
-  "errorBoundary": "Sorry, something went wrong. Please reload the page or try in a few minutes later!"
+  "errorBoundary": "Sorry, something went wrong. Please reload the page or try in a few minutes later!",
+  "add_new_window": "add new window",
+  "send_query": "send query",
+  "variables_editor": "variables editor",
+  "headers_editor": "header editor",
+  "open_editor_tools": "open editor tools",
+  "close_editor_tools": "close editor tools",
+  "window_for_requests": "window for requests",
+  "close_request_window": "close request window",
+  "open_docs": "open docs",
+  "close_docs": "close docs"
 }

@@ -64,7 +64,7 @@ query ExampleQuery {
 }`,
       variablesTabText: '',
       headersTabText: '# Headers editor is temporarily not working',
-      responseTabText: '# This tab is read-only',
+      responseTabText: '# This window is read-only',
     },
   ],
 };
