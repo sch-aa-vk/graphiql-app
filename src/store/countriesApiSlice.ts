@@ -2,7 +2,7 @@ import { FetchArgs, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/rea
 
 export const countriesApi = createApi({
   reducerPath: 'countriesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: '/graphql' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://countries.trevorblades.com/graphql' }),
   endpoints: (builder) => ({
     sendRequest: builder.mutation({
       query: (body: FetchArgs) => ({
