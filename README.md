@@ -26,5 +26,5 @@
     - [x] Sticky header (**5 points**)
 
 ## Screenshot:
-<img width="1440" alt="Снимок экрана 2023-05-27 в 15 37 33" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/3dc8e085-8abc-4f37-9755-bfa3701f95c5">
-<img width="1440" alt="Снимок экрана 2023-05-27 в 15 38 18" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/bc12331c-bb54-4e2f-8498-6ef5d8118059">
+<img width="1440" alt="Снимок экрана 2023-05-27 в 15 43 59" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/23895416-0427-41f8-aad9-fe9328966e2b">
+<img width="1440" alt="Снимок экрана 2023-05-27 в 15 44 30" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/f7dce0b6-875b-49fa-8ec6-277aa44fbf85">
