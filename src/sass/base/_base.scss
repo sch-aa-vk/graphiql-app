@@ -16,11 +16,11 @@ button {
   position: relative;
   color: $color-font;
   font-family: 'Istok Web', sans-serif;
-  overflow: hidden;
 }
 
 .main {
   min-height: calc(100vh - 60px - 45px);
+  overflow: hidden;
 
   @include media-tablet {
     min-height: calc(100vh - 60px - 70px);

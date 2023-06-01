@@ -89,7 +89,7 @@ function SignUp({ active, setActive }: IAuthorization) {
           register={register('password', {
             required: `* ${t('passwordWarning')}`,
             pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&-_+=`~])[A-Za-z\d@$!%*#?&-_+=`~]{8,}$/i,
+              value: /(?=.*\p{Letter})(?=.*\p{Number})(?=.*(\p{Symbol}|\p{Punctuation})).+/gu,
               message: `* ${t('passwordWarning2')}`,
             },
             minLength: {
