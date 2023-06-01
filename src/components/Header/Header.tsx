@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import { MutableRefObject, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import NavAuth from './NavAuth';
@@ -16,6 +16,12 @@ function Header() {
   const headerClientHeight: number = (headerElemRef?.current as HTMLElement)?.clientHeight;
   const isSticky: boolean = useStickyHeader(headerClientHeight);
   const headersClassName = `header ${isSticky ? 'sticky' : ''}`;
+
+  useEffect(() => {
+    if (document.body.clientWidth < 768) {
+      (document.querySelector('.app') as HTMLElement).style.overflow = 'hidden';
+    }
+  }, [isSticky]);
 
   function toggleBurgerMenu(): void {
     if (isBurgerMenuOpened) {
