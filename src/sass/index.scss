@@ -1,0 +1,25 @@
+@import 'primereact/resources/primereact.min.css';
+@import 'primereact/resources/themes/lara-light-indigo/theme.css';
+
+@import './abstract/constants';
+@import './abstract/mixins';
+@import './abstract/fonts';
+
+@import './base/reset';
+@import './base/base';
+
+@import './components/header';
+@import './components/logo';
+@import './components/burger';
+@import './components/footer';
+@import './components/input';
+@import './components/error-modal';
+@import './components/devInfo';
+@import './components/schema';
+@import './components/lang-select';
+
+@import './pages/welcome';
+@import './pages/authorization';
+@import './pages/undefined';
+@import './pages/loading';
+@import './pages/workspace.scss';

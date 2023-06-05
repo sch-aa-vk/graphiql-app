@@ -1,0 +1,61 @@
+.footer {
+  height: 45px;
+  background-color: $color-secondary;
+  color: $color-font-light;
+  padding: 5px 0;
+
+  @include media-tablet {
+    height: 70px;
+  }
+
+  &__container {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__date {
+    font-size: 20px;
+
+    @include media-tablet {
+      font-size: 16px;
+    }
+  }
+  
+  &__authors {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    font-size: 16px;
+
+    @include media-tablet {
+      flex-direction: column;
+      width: auto;
+      justify-content: flex-start;
+      font-size: 14px;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-font-light;
+
+      &:hover {
+        color: $color-secondary-highlight;
+      }
+    }
+  }
+
+  &__logo {
+    
+    &-img {
+      height: 28px;
+      filter: invert(1);
+    }
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+}

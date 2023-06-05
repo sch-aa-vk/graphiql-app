@@ -1,0 +1,143 @@
+.schema {
+  height: 100%;
+
+  button {
+    font-family: 'Istok Web', sans-serif;
+    border: none;
+    background: none;
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  &-btn {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 700;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    &.primary {
+      color: $color-primary;
+
+      &::after {
+        background-color: $color-primary;
+      }
+    }
+
+    &.secondary {
+      color: $color-secondary;
+
+      &::after {
+        background-color: $color-secondary;
+      }
+    }
+  }
+
+  &__container {
+    height: 100%;
+    padding: 10px;
+  }
+
+  &__back-btn {
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+    &-arrow {
+      margin-right: 5px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: $color-primary;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  &__query {
+    margin-bottom: 10px;
+
+    &-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: $color-secondary;
+    }
+  }
+
+  &__docs-title {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  .fields {
+    &__block {
+      padding-left: 5px;
+    }
+
+    &__item {
+      display: flex;
+      flex-wrap: nowrap;
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__devider {
+      margin-right: 5px;
+    }
+
+    &__arg {
+      &-name {
+        color: $color-secondary-bright;
+      }
+
+      &-default {
+        color: $color-secondary-bright;
+      }
+    }
+  }
+
+  .left-indent {
+    margin-left: 5px;
+  }
+
+  &__loading {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
