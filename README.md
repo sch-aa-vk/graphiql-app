@@ -3,6 +3,15 @@
 ## Deploy:
 > link: https://sch-aa-vk.github.io/graphiql-app/#/
 
+## Description:
+This application is developed on React, TypeScript, Redux using additional libraries and resources such as Redux Toolkit, Firebase, i18next, Codemirror and PrimeReact, as a final project on the course RsSchool React and is a playground/IDE for querying the Countries GraphQL API. It is localized into two languages and fully adaptive (up to 320 pixels), with responsive layout. In order to use the application, you need to log in and go to the main page. It consists of several parts, such as a documentation block with a description of the API schema, a block for creating a request with the ability to open several working tabs, a block for variables and headers, and finally a block for displaying the result in the JSON format.
+
+> If you have any problems with authorization, please use the login: sch.aa.vk@gmail.com , password: @aminas18
+
+## Screenshot:
+<img width="1440" alt="Снимок экрана 2023-05-27 в 15 43 59" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/23895416-0427-41f8-aad9-fe9328966e2b">
+<img width="1440" alt="Снимок экрана 2023-05-27 в 15 44 30" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/f7dce0b6-875b-49fa-8ec6-277aa44fbf85">
+
 ## Cross-check criteria:
 1. Welcome route (**10 points**)
     - [x] The welcome page should contain general information about the developers, project, and course. (**2 point**)
@@ -24,7 +33,3 @@
 4. General requirements - (**10 points**)
     - [x] Localization (**5 point**)
     - [x] Sticky header (**5 points**)
-
-## Screenshot:
-<img width="1440" alt="Снимок экрана 2023-05-27 в 15 43 59" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/23895416-0427-41f8-aad9-fe9328966e2b">
-<img width="1440" alt="Снимок экрана 2023-05-27 в 15 44 30" src="https://github.com/sch-aa-vk/graphiql-app/assets/89934145/f7dce0b6-875b-49fa-8ec6-277aa44fbf85">
